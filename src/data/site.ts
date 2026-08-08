@@ -9,13 +9,74 @@ export const PROFILE = {
   cv: "[INSERIR LINK DO CURRÍCULO]",
 };
 
-export const NAV = [
+export type NavItem = {
+  to: "/" | "/geracao-de-demanda" | "/relacionamento-retencao" | "/marca-presenca-digital" | "/sobre";
+  label: string;
+  children?: { hash: string; label: string; text: string }[];
+};
+
+export const NAV: NavItem[] = [
   { to: "/", label: "Início" },
-  { to: "/geracao-de-demanda", label: "Geração de Demanda" },
-  { to: "/relacionamento-retencao", label: "Relacionamento & Retenção" },
-  { to: "/marca-presenca-digital", label: "Marca & Presença Digital" },
+  {
+    to: "/geracao-de-demanda",
+    label: "Geração de Demanda",
+    children: [
+      {
+        hash: "landing-pages",
+        label: "Landing Pages & Conversão",
+        text: "Páginas de captura e copy de conversão",
+      },
+      {
+        hash: "materiais-ricos",
+        label: "Materiais Ricos",
+        text: "E-books, guias e conteúdos de apoio",
+      },
+      {
+        hash: "reguas-topo-funil",
+        label: "Réguas de Topo de Funil",
+        text: "Sequências de e-mail pós-conversão",
+      },
+      {
+        hash: "eventos",
+        label: "Eventos & Campanhas Integradas",
+        text: "Do anúncio ao pós-evento",
+      },
+    ],
+  },
+  {
+    to: "/relacionamento-retencao",
+    label: "Relacionamento & Retenção",
+    children: [
+      { hash: "newsletter", label: "Newsletter", text: "Estratégia editorial e curadoria" },
+      { hash: "email-marketing", label: "E-mail Marketing", text: "Campanhas e comunicação" },
+      { hash: "crm-automacao", label: "CRM & Automação", text: "Segmentação e fluxos" },
+      {
+        hash: "reguas-relacionamento",
+        label: "Réguas de relacionamento",
+        text: "Contato contínuo com a base",
+      },
+    ],
+  },
+  {
+    to: "/marca-presenca-digital",
+    label: "Marca & Presença Digital",
+    children: [
+      { hash: "site-autoral", label: "Site Autoral + IA", text: "Projeto autoral em destaque" },
+      {
+        hash: "social-media",
+        label: "Social Media & Conteúdo",
+        text: "Planejamento, copy e direção visual",
+      },
+      { hash: "conteudo-b2b", label: "Conteúdo B2B", text: "Artigos e materiais editoriais" },
+      {
+        hash: "projetos-digitais",
+        label: "Projetos Digitais / Sites",
+        text: "Páginas e sites de ponta a ponta",
+      },
+    ],
+  },
   { to: "/sobre", label: "Sobre" },
-] as const;
+];
 
 export const PILLARS = [
   {
