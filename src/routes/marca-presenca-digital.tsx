@@ -3,7 +3,7 @@ import { PageHero, ProjectIndex, CaseCard } from "@/components/sections";
 import { Reveal } from "@/components/Reveal";
 import { CASES, getCase } from "@/data/cases";
 
-export const Route = createFileRoute("/marca-e-presenca-digital")({
+export const Route = createFileRoute("/marca-presenca-digital")({
   head: () => ({
     meta: [
       { title: "Marca & Presença Digital | Raquel Villas" },
@@ -19,9 +19,9 @@ export const Route = createFileRoute("/marca-e-presenca-digital")({
           "Projetos que conectam conteúdo, posicionamento, experiência digital e presença de marca.",
       },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "/marca-e-presenca-digital" },
+      { property: "og:url", content: "/marca-presenca-digital" },
     ],
-    links: [{ rel: "canonical", href: "/marca-e-presenca-digital" }],
+    links: [{ rel: "canonical", href: "/marca-presenca-digital" }],
   }),
   component: Page,
 });
@@ -30,17 +30,20 @@ const AREAS = [
   {
     n: "02",
     title: "Social Media & Conteúdo",
+    id: "social-media",
     text: "Planejamento editorial, copywriting, direção visual e análise de métricas.",
     slug: "social-media-e-conteudo",
   },
   {
     n: "03",
     title: "Conteúdo B2B",
+    id: "conteudo-b2b",
     text: "Artigos, materiais e peças de comunicação que traduzem temas complexos para o público certo.",
   },
   {
     n: "04",
     title: "Projetos Digitais / Sites",
+    id: "projetos-digitais",
     text: "Estrutura, conteúdo e experiência de páginas e sites, da concepção à publicação.",
   },
 ];
@@ -59,7 +62,10 @@ function Page() {
         subtitle="Projetos que conectam conteúdo, posicionamento, experiência digital e presença de marca."
       />
 
-      <section className="border-b border-rule px-5 py-16 md:px-10 md:py-24">
+      <section
+        id="site-autoral"
+        className="scroll-mt-28 border-b border-rule px-5 py-16 md:px-10 md:py-24"
+      >
         <div className="mx-auto max-w-[1400px]">
           <Reveal>
             <p className="label">01 — Projeto em destaque</p>

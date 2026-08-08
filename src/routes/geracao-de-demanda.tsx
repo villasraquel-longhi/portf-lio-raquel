@@ -30,21 +30,25 @@ const AREAS = [
   {
     n: "01",
     title: "Landing Pages & Conversão",
+    id: "landing-pages",
     text: "Estrutura, copy e otimização de páginas de captura pensadas para o estágio de consciência do público.",
   },
   {
     n: "02",
     title: "Materiais Ricos",
+    id: "materiais-ricos",
     text: "E-books, guias e conteúdos de apoio que sustentam a oferta e qualificam o lead antes do contato comercial.",
   },
   {
     n: "03",
     title: "Réguas de Topo de Funil",
+    id: "reguas-topo-funil",
     text: "Sequências de e-mail que continuam a conversa iniciada no conteúdo e conduzem o lead ao próximo passo.",
   },
   {
     n: "04",
     title: "Eventos & Campanhas Integradas",
+    id: "eventos",
     text: "Eventos conduzidos como campanhas completas, do anúncio ao pós-evento.",
     slug: "eventos-e-campanhas-integradas",
   },

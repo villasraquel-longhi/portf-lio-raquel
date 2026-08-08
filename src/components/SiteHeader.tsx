@@ -1,6 +1,54 @@
 import { Link, useRouterState } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
-import { NAV, PROFILE } from "@/data/site";
+import { useEffect, useRef, useState } from "react";
+import { NAV, PROFILE, type NavItem } from "@/data/site";
+
+function DesktopItem({ item }: { item: NavItem }) {
+  const [open, setOpen] = useState(false);
+  const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const show = () => {
+    if (timer.current) clearTimeout(timer.current);
+    setOpen(true);
+  };
+  const hide = () => {
+    if (timer.current) clearTimeout(timer.current);
+    timer.current = setTimeout(() => setOpen(false), 120);
+  };
+
+  return (
+    <div className="relative" onMouseEnter={show} onMouseLeave={hide} onFocus={show} onBlur={hide}>
+      <Link
+        to={item.to}
+        aria-haspopup={item.children ? "true" : undefined}
+        aria-expanded={item.children ? open : undefined}
+        className="link-underline block py-2 font-mono text-[11px] tracking-[0.16em] text-muted-foreground uppercase transition-colors hover:text-foreground"
+        activeProps={{ className: "text-foreground" }}
+        activeOptions={{ exact: item.to === "/" }}
+      >
+        {item.label}
+      </Link>
+
+      {item.children && open && (
+        <div className="absolute top-full left-0 z-50 w-[22rem] border border-rule bg-background p-2 shadow-[0_18px_50px_-24px_rgba(0,0,0,0.35)]">
+          {item.children.map((child, i) => (
+            <Link
+              key={child.hash}
+              to={item.to}
+              hash={child.hash}
+              className="group block px-4 py-3 transition-colors hover:bg-secondary"
+            >
+              <span className="label mr-3">0{i + 1}</span>
+              <span className="font-serif text-lg transition-colors group-hover:text-primary">
+                {child.label}
+              </span>
+              <span className="mt-1 block text-xs text-muted-foreground">{child.text}</span>
+            </Link>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
@@ -17,17 +65,9 @@ export function SiteHeader() {
           {PROFILE.name}
         </Link>
 
-        <nav className="hidden items-center gap-8 lg:flex">
+        <nav aria-label="Navegação principal" className="hidden items-center gap-8 lg:flex">
           {NAV.map((item) => (
-            <Link
-              key={item.to}
-              to={item.to}
-              className="link-underline font-mono text-[11px] tracking-[0.16em] text-muted-foreground uppercase transition-colors hover:text-foreground"
-              activeProps={{ className: "text-foreground" }}
-              activeOptions={{ exact: item.to === "/" }}
-            >
-              {item.label}
-            </Link>
+            <DesktopItem key={item.to} item={item} />
           ))}
           <Link
             to="/sobre"
@@ -55,15 +95,31 @@ export function SiteHeader() {
       </div>
 
       {open && (
-        <nav className="border-t border-rule px-5 pb-8 lg:hidden">
+        <nav
+          aria-label="Navegação principal"
+          className="max-h-[80vh] overflow-y-auto border-t border-rule px-5 pb-10 lg:hidden"
+        >
           {NAV.map((item) => (
-            <Link
-              key={item.to}
-              to={item.to}
-              className="block border-b border-border py-4 font-serif text-2xl"
-            >
-              {item.label}
-            </Link>
+            <div key={item.to} className="border-b border-border py-4">
+              <Link to={item.to} className="block font-serif text-2xl">
+                {item.label}
+              </Link>
+              {item.children && (
+                <ul className="mt-3 space-y-2 border-l border-rule pl-4">
+                  {item.children.map((child) => (
+                    <li key={child.hash}>
+                      <Link
+                        to={item.to}
+                        hash={child.hash}
+                        className="block font-mono text-[11px] tracking-[0.14em] text-muted-foreground uppercase"
+                      >
+                        {child.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
           ))}
           <Link
             to="/sobre"
