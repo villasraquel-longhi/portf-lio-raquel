@@ -3,7 +3,7 @@ import { FlowLine, PageHero, ProjectIndex, CaseCard } from "@/components/section
 import { Reveal } from "@/components/Reveal";
 import { CASES } from "@/data/cases";
 
-export const Route = createFileRoute("/relacionamento-e-retencao")({
+export const Route = createFileRoute("/relacionamento-retencao")({
   head: () => ({
     meta: [
       { title: "Relacionamento & Retenção | Raquel Villas" },
@@ -19,9 +19,9 @@ export const Route = createFileRoute("/relacionamento-e-retencao")({
           "Conteúdo e comunicação para nutrir leads, fortalecer relacionamentos e manter a marca presente ao longo da jornada.",
       },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "/relacionamento-e-retencao" },
+      { property: "og:url", content: "/relacionamento-retencao" },
     ],
-    links: [{ rel: "canonical", href: "/relacionamento-e-retencao" }],
+    links: [{ rel: "canonical", href: "/relacionamento-retencao" }],
   }),
   component: Page,
 });

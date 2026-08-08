@@ -20,7 +20,7 @@ export const CASES: CaseStudy[] = [
   {
     slug: "site-autoral",
     category: "Marca & Presença Digital",
-    categoryHref: "/marca-e-presenca-digital",
+    categoryHref: "/marca-presenca-digital",
     title: "Site Autoral",
     summary: "Da estratégia à implementação: um projeto digital desenvolvido com apoio de IA.",
     featured: true,
@@ -180,7 +180,7 @@ export const CASES: CaseStudy[] = [
   {
     slug: "newsletter-e-email-marketing",
     category: "Relacionamento & Retenção",
-    categoryHref: "/relacionamento-e-retencao",
+    categoryHref: "/relacionamento-retencao",
     title: "Newsletter & E-mail Marketing",
     summary:
       "Estratégia editorial, curadoria e copy para manter a base engajada com frequência e consistência.",
@@ -217,7 +217,7 @@ export const CASES: CaseStudy[] = [
   {
     slug: "social-media-e-conteudo",
     category: "Marca & Presença Digital",
-    categoryHref: "/marca-e-presenca-digital",
+    categoryHref: "/marca-presenca-digital",
     title: "Social Media & Conteúdo",
     summary:
       "Planejamento editorial, copywriting e direção visual para sustentar presença digital consistente.",

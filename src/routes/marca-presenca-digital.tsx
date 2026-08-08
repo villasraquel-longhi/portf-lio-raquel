@@ -3,7 +3,7 @@ import { PageHero, ProjectIndex, CaseCard } from "@/components/sections";
 import { Reveal } from "@/components/Reveal";
 import { CASES, getCase } from "@/data/cases";
 
-export const Route = createFileRoute("/marca-e-presenca-digital")({
+export const Route = createFileRoute("/marca-presenca-digital")({
   head: () => ({
     meta: [
       { title: "Marca & Presença Digital | Raquel Villas" },
@@ -19,9 +19,9 @@ export const Route = createFileRoute("/marca-e-presenca-digital")({
           "Projetos que conectam conteúdo, posicionamento, experiência digital e presença de marca.",
       },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "/marca-e-presenca-digital" },
+      { property: "og:url", content: "/marca-presenca-digital" },
     ],
-    links: [{ rel: "canonical", href: "/marca-e-presenca-digital" }],
+    links: [{ rel: "canonical", href: "/marca-presenca-digital" }],
   }),
   component: Page,
 });

@@ -12,8 +12,8 @@ export const PROFILE = {
 export const NAV = [
   { to: "/", label: "Início" },
   { to: "/geracao-de-demanda", label: "Geração de Demanda" },
-  { to: "/relacionamento-e-retencao", label: "Relacionamento & Retenção" },
-  { to: "/marca-e-presenca-digital", label: "Marca & Presença Digital" },
+  { to: "/relacionamento-retencao", label: "Relacionamento & Retenção" },
+  { to: "/marca-presenca-digital", label: "Marca & Presença Digital" },
   { to: "/sobre", label: "Sobre" },
 ] as const;
 
@@ -27,13 +27,13 @@ export const PILLARS = [
   {
     n: "02",
     title: "Relacionamento & Retenção",
-    to: "/relacionamento-e-retencao",
+    to: "/relacionamento-retencao",
     text: "Construir relacionamento com leads e públicos por meio de conteúdo, e-mail marketing, newsletters, CRM e automações.",
   },
   {
     n: "03",
     title: "Marca & Presença Digital",
-    to: "/marca-e-presenca-digital",
+    to: "/marca-presenca-digital",
     text: "Fortalecer posicionamento e presença digital por meio de conteúdo, social media, experiências digitais e projetos de marca.",
   },
 ] as const;
