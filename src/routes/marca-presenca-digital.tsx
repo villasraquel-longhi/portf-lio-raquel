@@ -62,7 +62,10 @@ function Page() {
         subtitle="Projetos que conectam conteúdo, posicionamento, experiência digital e presença de marca."
       />
 
-      <section className="border-b border-rule px-5 py-16 md:px-10 md:py-24">
+      <section
+        id="site-autoral"
+        className="scroll-mt-28 border-b border-rule px-5 py-16 md:px-10 md:py-24"
+      >
         <div className="mx-auto max-w-[1400px]">
           <Reveal>
             <p className="label">01 — Projeto em destaque</p>
