@@ -30,22 +30,26 @@ const AREAS = [
   {
     n: "01",
     title: "Newsletter",
+    id: "newsletter",
     text: "Estratégia editorial, curadoria e copy para sustentar frequência e relevância junto à base.",
     slug: "newsletter-e-email-marketing",
   },
   {
     n: "02",
     title: "E-mail Marketing",
+    id: "email-marketing",
     text: "Campanhas de comunicação, lançamentos e conteúdos com mensagem ajustada a cada segmento.",
   },
   {
     n: "03",
     title: "CRM & Automação",
+    id: "crm-automacao",
     text: "Organização da base, segmentações e fluxos automatizados para escalar o relacionamento.",
   },
   {
     n: "04",
     title: "Réguas de relacionamento",
+    id: "reguas-relacionamento",
     text: "Sequências que acompanham o lead depois da conversão inicial, mantendo o contato útil e contínuo.",
   },
 ];

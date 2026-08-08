@@ -30,17 +30,20 @@ const AREAS = [
   {
     n: "02",
     title: "Social Media & Conteúdo",
+    id: "social-media",
     text: "Planejamento editorial, copywriting, direção visual e análise de métricas.",
     slug: "social-media-e-conteudo",
   },
   {
     n: "03",
     title: "Conteúdo B2B",
+    id: "conteudo-b2b",
     text: "Artigos, materiais e peças de comunicação que traduzem temas complexos para o público certo.",
   },
   {
     n: "04",
     title: "Projetos Digitais / Sites",
+    id: "projetos-digitais",
     text: "Estrutura, conteúdo e experiência de páginas e sites, da concepção à publicação.",
   },
 ];
