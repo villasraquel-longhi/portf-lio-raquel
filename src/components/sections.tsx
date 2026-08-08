@@ -45,13 +45,16 @@ export function FlowLine({ steps }: { steps: string[] }) {
 export function ProjectIndex({
   items,
 }: {
-  items: { n: string; title: string; text: string; slug?: string }[];
+  items: { n: string; title: string; text: string; slug?: string; id?: string }[];
 }) {
   return (
     <div className="border-t border-rule">
       {items.map((item, i) => (
         <Reveal key={item.n} delay={i * 60}>
-          <article className="group grid gap-4 border-b border-rule py-10 md:grid-cols-[6rem_minmax(0,1fr)_minmax(0,1.1fr)] md:gap-10 md:py-14">
+          <article
+            id={item.id}
+            className="group grid scroll-mt-28 gap-4 border-b border-rule py-10 md:grid-cols-[6rem_minmax(0,1fr)_minmax(0,1.1fr)] md:gap-10 md:py-14"
+          >
             <p className="label pt-2">{item.n}</p>
             <h3 className="font-serif text-3xl md:text-4xl">
               {item.slug ? (
