@@ -10,33 +10,102 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as GeracaoDeDemandaRouteImport } from './routes/geracao-de-demanda'
+import { Route as MarcaEPresencaDigitalRouteImport } from './routes/marca-e-presenca-digital'
+import { Route as RelacionamentoERetencaoRouteImport } from './routes/relacionamento-e-retencao'
+import { Route as SobreRouteImport } from './routes/sobre'
+import { Route as CasesSlugRouteImport } from './routes/cases.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const GeracaoDeDemandaRoute = GeracaoDeDemandaRouteImport.update({
+  id: '/geracao-de-demanda',
+  path: '/geracao-de-demanda',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MarcaEPresencaDigitalRoute = MarcaEPresencaDigitalRouteImport.update({
+  id: '/marca-e-presenca-digital',
+  path: '/marca-e-presenca-digital',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RelacionamentoERetencaoRoute = RelacionamentoERetencaoRouteImport.update({
+  id: '/relacionamento-e-retencao',
+  path: '/relacionamento-e-retencao',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SobreRoute = SobreRouteImport.update({
+  id: '/sobre',
+  path: '/sobre',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CasesSlugRoute = CasesSlugRouteImport.update({
+  id: '/cases/$slug',
+  path: '/cases/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/geracao-de-demanda': typeof GeracaoDeDemandaRoute
+  '/marca-e-presenca-digital': typeof MarcaEPresencaDigitalRoute
+  '/relacionamento-e-retencao': typeof RelacionamentoERetencaoRoute
+  '/sobre': typeof SobreRoute
+  '/cases/$slug': typeof CasesSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/geracao-de-demanda': typeof GeracaoDeDemandaRoute
+  '/marca-e-presenca-digital': typeof MarcaEPresencaDigitalRoute
+  '/relacionamento-e-retencao': typeof RelacionamentoERetencaoRoute
+  '/sobre': typeof SobreRoute
+  '/cases/$slug': typeof CasesSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/geracao-de-demanda': typeof GeracaoDeDemandaRoute
+  '/marca-e-presenca-digital': typeof MarcaEPresencaDigitalRoute
+  '/relacionamento-e-retencao': typeof RelacionamentoERetencaoRoute
+  '/sobre': typeof SobreRoute
+  '/cases/$slug': typeof CasesSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/geracao-de-demanda'
+    | '/marca-e-presenca-digital'
+    | '/relacionamento-e-retencao'
+    | '/sobre'
+    | '/cases/$slug'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/geracao-de-demanda'
+    | '/marca-e-presenca-digital'
+    | '/relacionamento-e-retencao'
+    | '/sobre'
+    | '/cases/$slug'
+  id:
+    | '__root__'
+    | '/'
+    | '/geracao-de-demanda'
+    | '/marca-e-presenca-digital'
+    | '/relacionamento-e-retencao'
+    | '/sobre'
+    | '/cases/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  GeracaoDeDemandaRoute: typeof GeracaoDeDemandaRoute
+  MarcaEPresencaDigitalRoute: typeof MarcaEPresencaDigitalRoute
+  RelacionamentoERetencaoRoute: typeof RelacionamentoERetencaoRoute
+  SobreRoute: typeof SobreRoute
+  CasesSlugRoute: typeof CasesSlugRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +117,51 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/geracao-de-demanda': {
+      id: '/geracao-de-demanda'
+      path: '/geracao-de-demanda'
+      fullPath: '/geracao-de-demanda'
+      preLoaderRoute: typeof GeracaoDeDemandaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/marca-e-presenca-digital': {
+      id: '/marca-e-presenca-digital'
+      path: '/marca-e-presenca-digital'
+      fullPath: '/marca-e-presenca-digital'
+      preLoaderRoute: typeof MarcaEPresencaDigitalRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/relacionamento-e-retencao': {
+      id: '/relacionamento-e-retencao'
+      path: '/relacionamento-e-retencao'
+      fullPath: '/relacionamento-e-retencao'
+      preLoaderRoute: typeof RelacionamentoERetencaoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sobre': {
+      id: '/sobre'
+      path: '/sobre'
+      fullPath: '/sobre'
+      preLoaderRoute: typeof SobreRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cases/$slug': {
+      id: '/cases/$slug'
+      path: '/cases/$slug'
+      fullPath: '/cases/$slug'
+      preLoaderRoute: typeof CasesSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  GeracaoDeDemandaRoute: GeracaoDeDemandaRoute,
+  MarcaEPresencaDigitalRoute: MarcaEPresencaDigitalRoute,
+  RelacionamentoERetencaoRoute: RelacionamentoERetencaoRoute,
+  SobreRoute: SobreRoute,
+  CasesSlugRoute: CasesSlugRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

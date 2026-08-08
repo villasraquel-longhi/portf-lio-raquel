@@ -1,7 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { Reveal } from "@/components/Reveal";
 import { ImagePlaceholder } from "@/components/ImagePlaceholder";
-import { CASES, getCase } from "@/data/cases";
+import { CASES, getCase, type CaseStudy } from "@/data/cases";
 
 export const Route = createFileRoute("/cases/$slug")({
   loader: ({ params }) => {
@@ -33,7 +33,7 @@ export const Route = createFileRoute("/cases/$slug")({
 });
 
 function CasePage() {
-  const { item } = Route.useLoaderData();
+  const { item } = Route.useLoaderData() as { item: CaseStudy };
   const next = CASES[(CASES.findIndex((c) => c.slug === item.slug) + 1) % CASES.length]!;
 
   return (
