@@ -32,13 +32,13 @@ export const NAV: NavItem[] = [
         text: "E-books, guias e conteúdos de apoio",
       },
       {
-        hash: "reguas-topo-funil",
-        label: "Réguas de Topo de Funil",
+        hash: "reguas-comunicacao",
+        label: "Réguas de comunicação",
         text: "Sequências de e-mail pós-conversão",
       },
       {
         hash: "eventos",
-        label: "Eventos & Campanhas Integradas",
+        label: "Eventos",
         text: "Do anúncio ao pós-evento",
       },
     ],
