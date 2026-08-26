@@ -41,13 +41,13 @@ const AREAS = [
   },
   {
     n: "03",
-    title: "Réguas de Topo de Funil",
-    id: "reguas-topo-funil",
+    title: "Réguas de comunicação",
+    id: "reguas-comunicacao",
     text: "Sequências de e-mail que continuam a conversa iniciada no conteúdo e conduzem o lead ao próximo passo.",
   },
   {
     n: "04",
-    title: "Eventos & Campanhas Integradas",
+    title: "Eventos",
     id: "eventos",
     text: "Eventos conduzidos como campanhas completas, do anúncio ao pós-evento.",
     slug: "eventos-e-campanhas-integradas",

@@ -29,7 +29,7 @@ export const Route = createFileRoute("/marca-presenca-digital")({
 const AREAS = [
   {
     n: "02",
-    title: "Social Media & Conteúdo",
+    title: "Social media",
     id: "social-media",
     text: "Planejamento editorial, copywriting, direção visual e análise de métricas.",
     slug: "social-media-e-conteudo",
@@ -45,6 +45,18 @@ const AREAS = [
     title: "Projetos Digitais / Sites",
     id: "projetos-digitais",
     text: "Estrutura, conteúdo e experiência de páginas e sites, da concepção à publicação.",
+  },
+  {
+    n: "05",
+    title: "Print design",
+    id: "print-design",
+    text: "Peças gráficas e materiais impressos que traduzem a identidade em formato físico.",
+  },
+  {
+    n: "06",
+    title: "Roteiro e captação",
+    id: "roteiro-captacao",
+    text: "Roteiros e gravação de conteúdo para vídeos, reels e peças audiovisuais.",
   },
 ];
 
@@ -63,13 +75,13 @@ function Page() {
       />
 
       <section
-        id="site-autoral"
+        id="web-design"
         className="scroll-mt-28 border-b border-rule px-5 py-16 md:px-10 md:py-24"
       >
         <div className="mx-auto max-w-[1400px]">
           <Reveal>
             <p className="label">01 — Projeto em destaque</p>
-            <h2 className="mt-6 font-serif text-5xl leading-[1] md:text-8xl">Site Autoral + IA</h2>
+            <h2 className="mt-6 font-serif text-5xl leading-[1] md:text-8xl">Web design</h2>
             <p className="mt-6 max-w-2xl font-serif text-xl leading-snug md:text-2xl">
               Da estratégia à implementação: um projeto digital desenvolvido com apoio de IA.
             </p>
