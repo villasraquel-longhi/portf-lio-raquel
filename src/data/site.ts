@@ -61,18 +61,12 @@ export const NAV: NavItem[] = [
     to: "/marca-presenca-digital",
     label: "Marca & Presença Digital",
     children: [
-      { hash: "site-autoral", label: "Site Autoral + IA", text: "Projeto autoral em destaque" },
-      {
-        hash: "social-media",
-        label: "Social Media & Conteúdo",
-        text: "Planejamento, copy e direção visual",
-      },
+      { hash: "web-design", label: "Web design", text: "Sites e páginas de ponta a ponta" },
+      { hash: "social-media", label: "Social media", text: "Planejamento, copy e direção visual" },
       { hash: "conteudo-b2b", label: "Conteúdo B2B", text: "Artigos e materiais editoriais" },
-      {
-        hash: "projetos-digitais",
-        label: "Projetos Digitais / Sites",
-        text: "Páginas e sites de ponta a ponta",
-      },
+      { hash: "projetos-digitais", label: "Projetos Digitais / Sites", text: "Páginas e sites de ponta a ponta" },
+      { hash: "print-design", label: "Print design", text: "Peças gráficas e materiais impressos" },
+      { hash: "roteiro-captacao", label: "Roteiro e captação", text: "Roteiros e gravação de conteúdo" },
     ],
   },
   { to: "/sobre", label: "Sobre" },
