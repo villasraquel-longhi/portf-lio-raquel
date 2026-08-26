@@ -29,7 +29,7 @@ export const Route = createFileRoute("/marca-presenca-digital")({
 const AREAS = [
   {
     n: "02",
-    title: "Social Media & Conteúdo",
+    title: "Social media",
     id: "social-media",
     text: "Planejamento editorial, copywriting, direção visual e análise de métricas.",
     slug: "social-media-e-conteudo",
@@ -45,6 +45,18 @@ const AREAS = [
     title: "Projetos Digitais / Sites",
     id: "projetos-digitais",
     text: "Estrutura, conteúdo e experiência de páginas e sites, da concepção à publicação.",
+  },
+  {
+    n: "05",
+    title: "Print design",
+    id: "print-design",
+    text: "Peças gráficas e materiais impressos que traduzem a identidade em formato físico.",
+  },
+  {
+    n: "06",
+    title: "Roteiro e captação",
+    id: "roteiro-captacao",
+    text: "Roteiros e gravação de conteúdo para vídeos, reels e peças audiovisuais.",
   },
 ];
 
