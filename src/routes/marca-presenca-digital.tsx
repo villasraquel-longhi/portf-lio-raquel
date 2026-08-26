@@ -75,13 +75,13 @@ function Page() {
       />
 
       <section
-        id="site-autoral"
+        id="web-design"
         className="scroll-mt-28 border-b border-rule px-5 py-16 md:px-10 md:py-24"
       >
         <div className="mx-auto max-w-[1400px]">
           <Reveal>
             <p className="label">01 — Projeto em destaque</p>
-            <h2 className="mt-6 font-serif text-5xl leading-[1] md:text-8xl">Site Autoral + IA</h2>
+            <h2 className="mt-6 font-serif text-5xl leading-[1] md:text-8xl">Web design</h2>
             <p className="mt-6 max-w-2xl font-serif text-xl leading-snug md:text-2xl">
               Da estratégia à implementação: um projeto digital desenvolvido com apoio de IA.
             </p>
