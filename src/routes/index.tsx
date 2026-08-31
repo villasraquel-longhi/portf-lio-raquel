@@ -20,6 +20,8 @@ const SKILL_COLORS = [
   "bg-[#2B301C] text-[#F7F6EC]",
 ];
 
+const HERO_PILL_COLORS = ["bg-[#D2DB76] text-[#2B301C]", "bg-[#FFC3CC] text-[#2B301C]"];
+
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
@@ -48,91 +50,133 @@ function Index() {
 
   return (
     <>
-      <section className="border-b border-rule px-5 pt-8 pb-16 md:px-10 md:pt-10 md:pb-24">
-        <div className="mx-auto max-w-[1400px]">
-          <Reveal>
-            <p className="label">Portfólio · 2026</p>
-          </Reveal>
-
-          <div className="mt-8 grid gap-10 md:grid-cols-[minmax(0,16rem)_1fr] md:gap-16">
+      <section className="overflow-hidden border-b border-rule bg-background">
+        <div className="grid md:grid-cols-2">
+          <div className="flex flex-col justify-center gap-6 px-8 py-16 md:px-14 md:py-24">
             <Reveal delay={80}>
-              <div className="mx-auto aspect-square w-full max-w-[16rem] overflow-hidden rounded-full border-4 border-[#D2DB76]">
-                <img
-                  src="/raquel-villas.jpg"
-                  alt="Raquel Villas"
-                  className="h-full w-full object-cover"
-                />
+              <p className="label">Portfólio · 2026</p>
+              <h1 className="mt-4 font-serif text-5xl leading-[0.95] md:text-7xl">
+                {PROFILE.name}
+              </h1>
+              <div className="mt-5 flex flex-wrap gap-2">
+                {PROFILE.headline.split(" · ").map((role, idx) => (
+                  <span
+                    key={role}
+                    className={`rounded-full px-3.5 py-1.5 font-sans text-xs font-bold italic ${HERO_PILL_COLORS[idx % HERO_PILL_COLORS.length]}`}
+                  >
+                    {role}
+                  </span>
+                ))}
               </div>
             </Reveal>
 
-            <div>
-              <Reveal delay={140}>
-                <h1 className="font-serif text-[3rem] leading-[0.95] md:text-7xl lg:text-8xl">
-                  {PROFILE.name}
-                </h1>
-                <div className="mt-5 flex flex-wrap gap-2">
-                  {PROFILE.headline.split(" · ").map((role, idx) => (
-                    <span
-                      key={role}
-                      className={`rounded-full px-3.5 py-1.5 font-sans text-xs font-bold italic ${SKILL_COLORS[idx % SKILL_COLORS.length]}`}
-                    >
-                      {role}
-                    </span>
-                  ))}
-                </div>
-              </Reveal>
+            <Reveal delay={160}>
+              <p className="max-w-2xl font-serif text-xl leading-snug md:text-2xl">
+                {PROFILE.intro}
+              </p>
+            </Reveal>
 
-              <Reveal delay={200}>
-                <p className="mt-8 max-w-xl font-serif text-xl leading-snug md:text-2xl">
-                  {PROFILE.intro}
-                </p>
-              </Reveal>
-
-              <Reveal delay={260}>
-                <div
-                  id="contato"
-                  className="mt-8 flex scroll-mt-28 flex-wrap gap-x-8 gap-y-3 border-t border-rule pt-6"
+            <Reveal delay={220}>
+              <div
+                id="contato"
+                className="flex scroll-mt-28 flex-wrap gap-x-6 gap-y-3 border-t border-rule pt-6"
+              >
+                <a
+                  href={PROFILE.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="link-underline font-mono text-[11px] tracking-[0.16em] uppercase hover:text-primary"
                 >
-                  <a
-                    href={PROFILE.linkedin}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="link-underline font-mono text-[11px] tracking-[0.16em] uppercase hover:text-primary"
-                  >
-                    LinkedIn
-                  </a>
-                  <a
-                    href={`mailto:${PROFILE.email}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="link-underline font-mono text-[11px] tracking-[0.16em] uppercase hover:text-primary"
-                  >
-                    E-mail
-                  </a>
-                  <a
-                    href={PROFILE.cv}
-                    className="link-underline font-mono text-[11px] tracking-[0.16em] uppercase hover:text-primary"
-                  >
-                    Currículo
-                  </a>
-                </div>
-              </Reveal>
+                  LinkedIn
+                </a>
+                <a
+                  href={`mailto:${PROFILE.email}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="link-underline font-mono text-[11px] tracking-[0.16em] uppercase hover:text-primary"
+                >
+                  E-mail
+                </a>
+                <a
+                  href={PROFILE.cv}
+                  className="link-underline font-mono text-[11px] tracking-[0.16em] uppercase hover:text-primary"
+                >
+                  Currículo
+                </a>
+              </div>
+            </Reveal>
 
-              <Reveal delay={320}>
-                <div className="mt-10 flex flex-wrap gap-3">
-                  <a
-                    href="#projetos"
-                    className="rounded-full bg-[#2B301C] px-6 py-3 font-sans text-sm font-bold text-[#F7F6EC] italic transition-transform hover:scale-105"
-                  >
-                    Ver projetos
-                  </a>
-                </div>
-              </Reveal>
-            </div>
+            <Reveal delay={280}>
+              <a
+                href="#projetos"
+                className="inline-flex w-fit items-center rounded-full bg-[#2B301C] px-6 py-3 font-sans text-sm font-bold text-[#F7F6EC] italic transition-transform hover:scale-105"
+              >
+                Ver projetos
+              </a>
+            </Reveal>
           </div>
 
-          <Reveal delay={380}>
-            <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="relative flex items-center justify-center overflow-hidden px-8 py-16 md:py-24">
+            <Reveal delay={140}>
+              <div className="relative flex items-center justify-center">
+                <div
+                  aria-hidden="true"
+                  className="absolute h-64 w-64 bg-[#FFC3CC] md:h-80 md:w-80"
+                  style={{ borderRadius: "42% 58% 65% 35% / 45% 35% 65% 55%" }}
+                />
+                <div className="relative aspect-square w-52 overflow-hidden rounded-full border-[6px] border-background md:w-64">
+                  <img
+                    src="/raquel-villas.jpg"
+                    alt="Raquel Villas"
+                    className="h-full w-full object-cover"
+                  />
+                </div>
+                <span
+                  aria-hidden="true"
+                  className="absolute -top-3 -left-6 animate-[pulse-scale_3s_ease-in-out_infinite] text-4xl text-[#2B301C] md:text-5xl"
+                >
+                  ✦
+                </span>
+                <span
+                  aria-hidden="true"
+                  className="absolute top-2 right-0 animate-[pulse-scale_2.4s_ease-in-out_infinite] text-xl text-[#2B301C] md:text-2xl"
+                  style={{ animationDelay: "0.6s" }}
+                >
+                  ✦
+                </span>
+                <span
+                  aria-hidden="true"
+                  className="absolute -right-6 bottom-6 animate-[pulse-scale_3.6s_ease-in-out_infinite] text-3xl text-[#D2DB76] md:text-4xl"
+                  style={{ animationDelay: "1.2s" }}
+                >
+                  ✦
+                </span>
+              </div>
+            </Reveal>
+          </div>
+        </div>
+
+        <div className="overflow-hidden bg-[#FFC3CC] py-5" aria-hidden="true">
+          <div className="flex w-max animate-[marquee_18s_linear_infinite] whitespace-nowrap">
+            {[0, 1].map((i) => (
+              <span
+                key={i}
+                className="flex items-center px-8 font-sans text-sm font-bold text-[#2B301C]"
+              >
+                Vamos criar sua próxima campanha juntos.
+                <span className="mx-8">✦</span>
+                Vamos criar sua próxima campanha juntos.
+                <span className="mx-8">✦</span>
+              </span>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="border-b border-rule px-5 py-14 md:px-10 md:py-20">
+        <div className="mx-auto max-w-[1400px]">
+          <Reveal>
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               <div className="rounded-2xl border border-rule bg-card p-6">
                 <p className="label font-semibold">Formação</p>
                 <ul className="mt-3 space-y-3">
