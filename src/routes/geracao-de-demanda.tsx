@@ -29,21 +29,21 @@ export const Route = createFileRoute("/geracao-de-demanda")({
 const AREAS = [
   {
     n: "01",
-    title: "Landing Pages & Conversão",
-    id: "landing-pages",
-    text: "Estrutura, copy e otimização de páginas de captura pensadas para o estágio de consciência do público.",
+    title: "E-mail Marketing",
+    id: "email-marketing",
+    text: "Campanhas e comunicação que continuam a conversa iniciada no conteúdo e conduzem o lead ao próximo passo.",
   },
   {
     n: "02",
-    title: "Materiais Ricos",
-    id: "materiais-ricos",
+    title: "Inbound Marketing",
+    id: "inbound-marketing",
     text: "E-books, guias e conteúdos de apoio que sustentam a oferta e qualificam o lead antes do contato comercial.",
   },
   {
     n: "03",
-    title: "Réguas de comunicação",
-    id: "reguas-comunicacao",
-    text: "Sequências de e-mail que continuam a conversa iniciada no conteúdo e conduzem o lead ao próximo passo.",
+    title: "Landing Pages & Conversão",
+    id: "landing-pages",
+    text: "Estrutura, copy e otimização de páginas de captura pensadas para o estágio de consciência do público.",
   },
   {
     n: "04",
@@ -76,11 +76,15 @@ function Page() {
       <section className="px-5 py-16 md:px-10 md:py-24">
         <div className="mx-auto max-w-[1400px]">
           <Reveal>
-            <p className="label mb-10">Cases desta área</p>
+            <p className="mb-10 font-mono text-sm font-semibold tracking-[0.08em] text-foreground uppercase md:text-base">
+              Cases desta área
+            </p>
           </Reveal>
-          {cases.map((c, i) => (
-            <CaseCard key={c.slug} item={c} index={i} />
-          ))}
+          <div className="space-y-6">
+            {cases.map((c, i) => (
+              <CaseCard key={c.slug} item={c} index={i} />
+            ))}
+          </div>
         </div>
       </section>
     </>

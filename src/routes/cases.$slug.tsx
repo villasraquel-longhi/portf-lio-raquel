@@ -53,7 +53,7 @@ function CasePage() {
             {item.externalCta && (
               <a
                 href={item.externalCta.href}
-                className="mt-10 inline-block border border-foreground px-6 py-3 font-mono text-[11px] tracking-[0.16em] uppercase transition-colors hover:bg-foreground hover:text-background"
+                className="mt-10 inline-block rounded-full bg-[#2B301C] px-6 py-3 font-sans text-sm font-bold text-[#F7F6EC] italic transition-transform hover:scale-105"
               >
                 {item.externalCta.label}
               </a>
@@ -66,15 +66,19 @@ function CasePage() {
         <section className="border-b border-rule px-5 py-16 md:px-10 md:py-20">
           <div className="mx-auto max-w-[1400px]">
             <Reveal>
-              <p className="label">Processo</p>
-              <p className="mt-6 font-mono text-[11px] tracking-[0.16em] uppercase">
-                Ideia → Estratégia → Direção → Implementação com IA → Site publicado
+              <p className="font-mono text-sm font-semibold tracking-[0.08em] text-foreground uppercase md:text-base">
+                Processo
               </p>
+              {item.flow && (
+                <p className="mt-6 font-mono text-[11px] tracking-[0.16em] uppercase">
+                  {item.flow.join(" → ")}
+                </p>
+              )}
             </Reveal>
-            <div className="mt-12 grid gap-px sm:grid-cols-2 lg:grid-cols-3">
+            <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {item.process.map((p, i) => (
                 <Reveal key={p.n} delay={i * 60}>
-                  <div className="h-full border-t border-rule py-8 pr-8">
+                  <div className="h-full rounded-2xl border border-rule bg-card p-6">
                     <p className="label">{p.n}</p>
                     <h3 className="mt-4 font-serif text-2xl">{p.title}</h3>
                     <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{p.text}</p>
@@ -156,7 +160,9 @@ function CasePage() {
       <section className="border-b border-rule px-5 py-16 md:px-10 md:py-20">
         <div className="mx-auto max-w-[1400px]">
           <Reveal>
-            <p className="label">Galeria</p>
+            <p className="font-mono text-sm font-semibold tracking-[0.08em] text-foreground uppercase md:text-base">
+              Galeria
+            </p>
           </Reveal>
           <div className="mt-10 grid gap-5 md:grid-cols-6">
             {item.gallery.map((g, i) => (
@@ -180,16 +186,18 @@ function CasePage() {
 
       <section className="px-5 py-16 md:px-10 md:py-24">
         <div className="mx-auto max-w-[1400px]">
-          <p className="label">Próximo projeto</p>
+          <p className="font-mono text-sm font-semibold tracking-[0.08em] text-foreground uppercase md:text-base">
+            Próximo projeto
+          </p>
           <Link
             to="/cases/$slug"
             params={{ slug: next.slug }}
-            className="group mt-6 block border-t border-rule pt-8"
+            className="group mt-6 block rounded-3xl border border-rule bg-card p-8 transition-colors hover:border-primary md:p-10"
           >
             <h2 className="font-serif text-4xl transition-colors group-hover:text-primary md:text-6xl">
               {next.title}
             </h2>
-            <span className="mt-4 inline-block font-mono text-[11px] tracking-[0.16em] uppercase">
+            <span className="mt-4 inline-flex w-fit items-center rounded-full bg-[#2B301C] px-5 py-2.5 font-sans text-sm font-bold text-[#F7F6EC] italic transition-transform group-hover:scale-105">
               Ver projeto →
             </span>
           </Link>

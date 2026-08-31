@@ -1,16 +1,42 @@
 export const PROFILE = {
   name: "Raquel Villas",
-  headline: "Marketing B2B · Inbound · Conteúdo · Geração de Demanda",
+  headline: "Marketing B2B · B2B2C · Inbound · Conteúdo · Geração de Demanda",
   intro:
     "Transformo estratégias de marketing em conteúdo, campanhas e experiências digitais que conectam marcas e pessoas ao longo da jornada de compra.",
-  linkedin: "[INSERIR LINK DO LINKEDIN]",
-  email: "[INSERIR E-MAIL]",
+  linkedin: "https://www.linkedin.com/in/raquel-villas-longhi/",
+  email: "villasraquel@gmail.com",
   site: "[INSERIR LINK DO SITE]",
   cv: "[INSERIR LINK DO CURRÍCULO]",
 };
 
+export const FORMACAO = [
+  {
+    curso: "Pós-graduação em Comunicação e Marketing",
+    instituicao: "Universidade Anhembi Morumbi",
+    periodo: "2021",
+  },
+  {
+    curso: "Bacharelado em Letras",
+    instituicao: "Universidade Federal de Juiz de Fora",
+    periodo: "2018",
+  },
+  {
+    curso: "Copywriting — Redação Publicitária",
+    instituicao: "EBAC",
+    periodo: "2023",
+  },
+];
+
+export const ABOUT = {
+  areasDeAtuacao:
+    "Inbound · Geração de demanda · Conteúdo B2B · Conteúdo B2B2C · CRM · E-mail marketing · Social media · Eventos · Projetos digitais",
+  ferramentasEdicao: ["Figma", "Canva", "CapCut"],
+  ferramentasGenAI: ["ChatGPT", "Gemini", "Claude"],
+  interesses: "Estratégia de funil, conteúdo editorial B2B e IA aplicada ao marketing.",
+};
+
 export type NavItem = {
-  to: "/" | "/geracao-de-demanda" | "/relacionamento-retencao" | "/marca-presenca-digital" | "/sobre";
+  to: "/" | "/geracao-de-demanda" | "/relacionamento-retencao" | "/marca-presenca-digital";
   label: string;
   children?: { hash: string; label: string; text: string }[];
 };
@@ -22,19 +48,19 @@ export const NAV: NavItem[] = [
     label: "Geração de Demanda",
     children: [
       {
-        hash: "landing-pages",
-        label: "Landing Pages & Conversão",
-        text: "Páginas de captura e copy de conversão",
+        hash: "email-marketing",
+        label: "E-mail Marketing",
+        text: "Campanhas e comunicação",
       },
       {
-        hash: "materiais-ricos",
-        label: "Materiais Ricos",
+        hash: "inbound-marketing",
+        label: "Inbound Marketing",
         text: "E-books, guias e conteúdos de apoio",
       },
       {
-        hash: "reguas-comunicacao",
-        label: "Réguas de comunicação",
-        text: "Sequências de e-mail pós-conversão",
+        hash: "landing-pages",
+        label: "Landing Pages & Conversão",
+        text: "Páginas de captura e copy de conversão",
       },
       {
         hash: "eventos",
@@ -48,13 +74,6 @@ export const NAV: NavItem[] = [
     label: "Relacionamento & Retenção",
     children: [
       { hash: "newsletter", label: "Newsletter", text: "Estratégia editorial e curadoria" },
-      { hash: "email-marketing", label: "E-mail Marketing", text: "Campanhas e comunicação" },
-      { hash: "crm-automacao", label: "CRM & Automação", text: "Segmentação e fluxos" },
-      {
-        hash: "reguas-relacionamento",
-        label: "Réguas de relacionamento",
-        text: "Contato contínuo com a base",
-      },
     ],
   },
   {
@@ -63,13 +82,10 @@ export const NAV: NavItem[] = [
     children: [
       { hash: "web-design", label: "Web design", text: "Sites e páginas de ponta a ponta" },
       { hash: "social-media", label: "Social media", text: "Planejamento, copy e direção visual" },
-      { hash: "conteudo-b2b", label: "Conteúdo B2B", text: "Artigos e materiais editoriais" },
-      { hash: "projetos-digitais", label: "Projetos Digitais / Sites", text: "Páginas e sites de ponta a ponta" },
       { hash: "print-design", label: "Print design", text: "Peças gráficas e materiais impressos" },
       { hash: "roteiro-captacao", label: "Roteiro e captação", text: "Roteiros e gravação de conteúdo" },
     ],
   },
-  { to: "/sobre", label: "Sobre" },
 ];
 
 export const PILLARS = [
@@ -96,7 +112,14 @@ export const PILLARS = [
 export const SKILLS = [
   {
     group: "Estratégia",
-    items: ["Geração de demanda", "Inbound Marketing", "Jornada do cliente", "Campanhas integradas"],
+    items: [
+      "Geração de demanda",
+      "Inbound Marketing",
+      "Jornada do cliente",
+      "Campanhas integradas",
+      "Growth Marketing",
+      "Lifecycle Marketing",
+    ],
   },
   {
     group: "Conteúdo",

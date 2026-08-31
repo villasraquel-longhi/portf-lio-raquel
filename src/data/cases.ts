@@ -9,6 +9,7 @@ export type CaseStudy = {
   featured?: boolean;
   externalCta?: { label: string; href: string };
   process?: { n: string; title: string; text: string }[];
+  flow?: string[];
   sections: CaseSection[];
   results?: string[];
   learnings?: string[];
@@ -25,6 +26,7 @@ export const CASES: CaseStudy[] = [
     summary: "Da estratégia à implementação: um projeto digital desenvolvido com apoio de IA.",
     featured: true,
     externalCta: { label: "Visitar site", href: "[INSERIR LINK DO PROJETO]" },
+    flow: ["Ideia", "Estratégia", "Direção", "Implementação com IA", "Site publicado"],
     process: [
       {
         n: "01",

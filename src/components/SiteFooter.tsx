@@ -15,6 +15,8 @@ export function SiteFooter() {
           <li>
             <a
               href={PROFILE.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
               className="link-underline font-mono text-[11px] tracking-[0.16em] uppercase hover:text-primary"
             >
               LinkedIn
@@ -23,6 +25,8 @@ export function SiteFooter() {
           <li>
             <a
               href={`mailto:${PROFILE.email}`}
+              target="_blank"
+              rel="noopener noreferrer"
               className="link-underline font-mono text-[11px] tracking-[0.16em] uppercase hover:text-primary"
             >
               E-mail

@@ -1,6 +1,76 @@
 import { Link, useRouterState } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
-import { NAV, PROFILE } from "@/data/site";
+import { useEffect, useRef, useState } from "react";
+import { ChevronDown } from "lucide-react";
+import { NAV, type NavItem } from "@/data/site";
+
+function NavItemWithDropdown({
+  item,
+}: {
+  item: NavItem & { children: NonNullable<NavItem["children"]> };
+}) {
+  const [open, setOpen] = useState(false);
+  const closeTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
+
+  const openNow = () => {
+    clearTimeout(closeTimer.current);
+    setOpen(true);
+  };
+  const closeSoon = () => {
+    clearTimeout(closeTimer.current);
+    closeTimer.current = setTimeout(() => setOpen(false), 120);
+  };
+
+  return (
+    <span
+      className="relative flex items-center"
+      onMouseEnter={openNow}
+      onMouseLeave={closeSoon}
+    >
+      <Link
+        to={item.to}
+        className="-mb-px border-b-2 border-transparent py-5 font-mono text-[11px] tracking-[0.16em] text-muted-foreground uppercase transition-colors hover:text-foreground"
+        activeProps={{ className: "border-foreground text-foreground" }}
+      >
+        {item.label}
+      </Link>
+      <button
+        type="button"
+        aria-label={`Abrir submenu de ${item.label}`}
+        aria-expanded={open}
+        onClick={() => setOpen((v) => !v)}
+        className={`-mb-px flex items-center border-b-2 border-transparent py-5 pl-1.5 outline-none transition-colors hover:text-foreground ${open ? "text-primary" : "text-muted-foreground"}`}
+      >
+        <ChevronDown className={`h-3.5 w-3.5 transition-transform ${open ? "rotate-180" : ""}`} />
+      </button>
+
+      {open && (
+        <div
+          role="menu"
+          aria-label={`Subáreas de ${item.label}`}
+          className="absolute top-full left-0 z-50 mt-2 w-72 overflow-hidden rounded-2xl border border-rule bg-background"
+        >
+          {item.children.map((child, i) => (
+            <Link
+              key={child.hash}
+              to={item.to}
+              hash={child.hash}
+              role="menuitem"
+              className="group flex flex-col gap-1 border-b border-border px-4 py-5 transition-colors last:border-b-0 hover:bg-secondary"
+            >
+              <span className="font-mono text-[10.5px] tracking-[0.14em] text-primary/70 uppercase">
+                0{i + 1}
+              </span>
+              <span className="font-mono text-[11px] tracking-[0.14em] uppercase transition-colors group-hover:text-primary">
+                {child.label}
+              </span>
+              <span className="text-xs text-muted-foreground">{child.text}</span>
+            </Link>
+          ))}
+        </div>
+      )}
+    </span>
+  );
+}
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
@@ -10,21 +80,17 @@ export function SiteHeader() {
     setOpen(false);
   }, [pathname]);
 
-  const active = NAV.find((item) => item.to !== "/" && pathname.startsWith(item.to));
-  const subItems = active?.children;
-
   return (
     <header className="sticky top-0 z-50 border-b border-rule bg-background/90 backdrop-blur-md">
-      {/* Linha 1 — marca */}
-      <div className="mx-auto flex max-w-[1400px] items-center justify-between gap-4 px-5 pt-6 pb-4 md:px-10">
-        <Link to="/" className="min-w-0 font-serif text-2xl tracking-tight md:text-3xl">
-          {PROFILE.name}
-        </Link>
-
-        <p className="hidden font-mono text-[11px] tracking-[0.14em] text-muted-foreground uppercase md:block">
-          Marketing · Inbound · CRM · Conteúdo B2B
+      {/* Linha 0 — utilitária */}
+      <div className="bg-[#2B301C] px-5 py-1.5 md:px-10">
+        <p className="mx-auto max-w-[1400px] font-mono text-[10px] tracking-[0.14em] text-[#F7F6EC] uppercase">
+          Portfólio | Raquel Villas
         </p>
+      </div>
 
+      {/* Linha 1 — utilitária mobile */}
+      <div className="mx-auto flex max-w-[1400px] items-center justify-end gap-4 px-5 py-3 md:px-10 lg:hidden">
         <button
           type="button"
           onClick={() => setOpen((v) => !v)}
@@ -46,56 +112,31 @@ export function SiteHeader() {
         aria-label="Navegação principal"
         className="mx-auto hidden max-w-[1400px] items-center gap-8 px-5 md:px-10 lg:flex"
       >
-        {NAV.filter((i) => i.to !== "/sobre").map((item) => (
-          <Link
-            key={item.to}
-            to={item.to}
-            className="-mb-px border-b-2 border-transparent py-3 font-mono text-[11px] tracking-[0.16em] text-muted-foreground uppercase transition-colors hover:text-foreground"
-            activeProps={{ className: "border-foreground text-foreground" }}
-            activeOptions={{ exact: item.to === "/" }}
-          >
-            {item.label}
-          </Link>
-        ))}
+        {NAV.map((item) =>
+          item.children ? (
+            <NavItemWithDropdown key={item.to} item={{ ...item, children: item.children }} />
+          ) : (
+            <Link
+              key={item.to}
+              to={item.to}
+              className="-mb-px border-b-2 border-transparent py-5 font-mono text-[11px] tracking-[0.16em] text-muted-foreground uppercase transition-colors hover:text-foreground"
+              activeProps={{ className: "border-foreground text-foreground" }}
+              activeOptions={{ exact: item.to === "/" }}
+            >
+              {item.label}
+            </Link>
+          ),
+        )}
         <span className="ml-auto flex items-center gap-6">
           <Link
-            to="/sobre"
-            className="-mb-px border-b-2 border-transparent py-3 font-mono text-[11px] tracking-[0.16em] text-muted-foreground uppercase transition-colors hover:text-foreground"
-            activeProps={{ className: "border-foreground text-foreground" }}
-          >
-            Sobre
-          </Link>
-          <Link
-            to="/sobre"
+            to="/"
             hash="contato"
-            className="my-1 border border-foreground px-4 py-2 font-mono text-[11px] tracking-[0.16em] uppercase transition-colors hover:bg-foreground hover:text-background"
+            className="my-1 rounded-full bg-[#2B301C] px-4 py-2 font-sans text-sm font-bold text-[#F7F6EC] italic transition-transform hover:scale-105"
           >
             Contato
           </Link>
         </span>
       </nav>
-
-      {/* Linha 3 — subáreas fixas da seção ativa */}
-      {subItems && active && (
-        <div className="hidden border-t border-rule bg-secondary/40 lg:block">
-          <nav
-            aria-label={`Subáreas de ${active.label}`}
-            className="mx-auto flex max-w-[1400px] flex-wrap items-center gap-x-7 gap-y-1 px-5 py-2.5 md:px-10"
-          >
-            {subItems.map((child, i) => (
-              <Link
-                key={child.hash}
-                to={active.to}
-                hash={child.hash}
-                className="group font-mono text-[10.5px] tracking-[0.14em] text-muted-foreground uppercase transition-colors hover:text-primary"
-              >
-                <span className="mr-2 text-primary/60">0{i + 1}</span>
-                {child.label}
-              </Link>
-            ))}
-          </nav>
-        </div>
-      )}
 
       {/* Mobile */}
       {open && (
@@ -126,9 +167,9 @@ export function SiteHeader() {
             </div>
           ))}
           <Link
-            to="/sobre"
+            to="/"
             hash="contato"
-            className="mt-6 inline-block border border-foreground px-5 py-3 font-mono text-[11px] tracking-[0.16em] uppercase"
+            className="mt-6 inline-block rounded-full bg-[#2B301C] px-5 py-3 font-sans text-sm font-bold text-[#F7F6EC] italic"
           >
             Contato
           </Link>

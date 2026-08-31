@@ -1,8 +1,24 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { Target, PenLine, Globe2, MessagesSquare, Sparkles, type LucideIcon } from "lucide-react";
 import { Reveal } from "@/components/Reveal";
-import { CaseCard } from "@/components/sections";
+import { ImagePlaceholder } from "@/components/ImagePlaceholder";
+import { ToolsField } from "@/components/sections";
 import { CASES } from "@/data/cases";
-import { PILLARS, PROFILE, SKILLS } from "@/data/site";
+import { ABOUT, FORMACAO, PILLARS, PROFILE, SKILLS } from "@/data/site";
+
+const SKILL_ICONS: Record<string, LucideIcon> = {
+  Estratégia: Target,
+  Conteúdo: PenLine,
+  Digital: Globe2,
+  Comunicação: MessagesSquare,
+  "Tecnologia / IA": Sparkles,
+};
+
+const SKILL_COLORS = [
+  "bg-[#D2DB76] text-[#2B301C]",
+  "bg-[#FFC3CC] text-[#2B301C]",
+  "bg-[#2B301C] text-[#F7F6EC]",
+];
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -29,53 +45,208 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   const featured = CASES.find((c) => c.featured)!;
-  const others = CASES.filter((c) => !c.featured);
 
   return (
     <>
-      <section className="border-b border-rule px-5 pt-20 pb-20 md:px-10 md:pt-36 md:pb-32">
+      <section className="border-b border-rule px-5 pt-8 pb-16 md:px-10 md:pt-10 md:pb-24">
         <div className="mx-auto max-w-[1400px]">
           <Reveal>
             <p className="label">Portfólio · 2026</p>
-            <h1 className="mt-8 font-serif text-[3.25rem] leading-[0.95] md:text-[8rem] lg:text-[10rem]">
-              Raquel Villas
-            </h1>
           </Reveal>
-          <Reveal delay={120}>
-            <p className="mt-8 font-mono text-[11px] tracking-[0.16em] uppercase md:text-xs">
-              {PROFILE.headline}
-            </p>
-          </Reveal>
-          <Reveal delay={200}>
-            <div className="mt-14 grid gap-10 border-t border-rule pt-10 md:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] md:gap-20">
-              <p className="max-w-xl font-serif text-2xl leading-snug md:text-3xl">
-                {PROFILE.intro}
-              </p>
-              <div className="self-end">
-                <p className="max-w-md leading-relaxed text-muted-foreground">
-                  Profissional de marketing com experiência em estratégias de geração de demanda,
-                  inbound, conteúdo B2B, relacionamento, campanhas digitais e projetos de
-                  comunicação.
+
+          <div className="mt-8 grid gap-10 md:grid-cols-[minmax(0,16rem)_1fr] md:gap-16">
+            <Reveal delay={80}>
+              <div className="mx-auto aspect-square w-full max-w-[16rem] overflow-hidden rounded-full border-4 border-[#D2DB76]">
+                <img
+                  src="/raquel-villas.jpg"
+                  alt="Raquel Villas"
+                  className="h-full w-full object-cover"
+                />
+              </div>
+            </Reveal>
+
+            <div>
+              <Reveal delay={140}>
+                <h1 className="font-serif text-[3rem] leading-[0.95] md:text-7xl lg:text-8xl">
+                  {PROFILE.name}
+                </h1>
+                <div className="mt-5 flex flex-wrap gap-2">
+                  {PROFILE.headline.split(" · ").map((role, idx) => (
+                    <span
+                      key={role}
+                      className={`rounded-full px-3.5 py-1.5 font-sans text-xs font-bold italic ${SKILL_COLORS[idx % SKILL_COLORS.length]}`}
+                    >
+                      {role}
+                    </span>
+                  ))}
+                </div>
+              </Reveal>
+
+              <Reveal delay={200}>
+                <p className="mt-8 max-w-xl font-serif text-xl leading-snug md:text-2xl">
+                  {PROFILE.intro}
                 </p>
-                <div className="mt-8 flex flex-wrap gap-3">
+              </Reveal>
+
+              <Reveal delay={260}>
+                <div
+                  id="contato"
+                  className="mt-8 flex scroll-mt-28 flex-wrap gap-x-8 gap-y-3 border-t border-rule pt-6"
+                >
+                  <a
+                    href={PROFILE.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="link-underline font-mono text-[11px] tracking-[0.16em] uppercase hover:text-primary"
+                  >
+                    LinkedIn
+                  </a>
+                  <a
+                    href={`mailto:${PROFILE.email}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="link-underline font-mono text-[11px] tracking-[0.16em] uppercase hover:text-primary"
+                  >
+                    E-mail
+                  </a>
+                  <a
+                    href={PROFILE.cv}
+                    className="link-underline font-mono text-[11px] tracking-[0.16em] uppercase hover:text-primary"
+                  >
+                    Currículo
+                  </a>
+                </div>
+              </Reveal>
+
+              <Reveal delay={320}>
+                <div className="mt-10 flex flex-wrap gap-3">
                   <a
                     href="#projetos"
-                    className="border border-foreground px-6 py-3 font-mono text-[11px] tracking-[0.16em] uppercase transition-colors hover:bg-foreground hover:text-background"
+                    className="rounded-full bg-[#2B301C] px-6 py-3 font-sans text-sm font-bold text-[#F7F6EC] italic transition-transform hover:scale-105"
                   >
                     Ver projetos
                   </a>
-                  <Link
-                    to="/sobre"
-                    className="border border-border px-6 py-3 font-mono text-[11px] tracking-[0.16em] uppercase transition-colors hover:border-primary hover:text-primary"
-                  >
-                    Sobre mim
-                  </Link>
                 </div>
+              </Reveal>
+            </div>
+          </div>
+
+          <Reveal delay={380}>
+            <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              <div className="rounded-2xl border border-rule bg-card p-6">
+                <p className="label font-semibold">Formação</p>
+                <ul className="mt-3 space-y-3">
+                  {FORMACAO.map((f) => (
+                    <li key={f.curso} className="max-w-md">
+                      <p className="text-sm text-foreground">{f.curso}</p>
+                      <p className="text-xs text-muted-foreground">
+                        {f.instituicao} · {f.periodo}
+                      </p>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="rounded-2xl border border-rule bg-card p-6">
+                <p className="label font-semibold">Áreas de atuação</p>
+                <p className="mt-3 max-w-md text-sm text-muted-foreground">
+                  {ABOUT.areasDeAtuacao}
+                </p>
+              </div>
+              <div className="rounded-2xl border border-rule bg-card p-6">
+                <ToolsField edicao={ABOUT.ferramentasEdicao} genAI={ABOUT.ferramentasGenAI} />
               </div>
             </div>
           </Reveal>
-          <Reveal delay={320}>
-            <p className="label mt-20 animate-pulse">↓ Role para continuar</p>
+        </div>
+      </section>
+
+      <section className="border-b border-rule px-5 py-14 md:px-10 md:py-20">
+        <div className="mx-auto max-w-[1400px]">
+          <Reveal>
+            <p className="font-mono text-sm font-semibold tracking-[0.08em] text-foreground uppercase md:text-base">
+              Competências
+            </p>
+          </Reveal>
+          <div className="mt-8 grid gap-x-10 gap-y-8 sm:grid-cols-2 lg:grid-cols-3">
+            {SKILLS.map((s, i) => {
+              const Icon = SKILL_ICONS[s.group] ?? Sparkles;
+              return (
+                <Reveal key={s.group} delay={i * 60}>
+                  <div className="flex items-center gap-2">
+                    <Icon className="h-4 w-4 text-primary" strokeWidth={1.75} />
+                    <h3 className="label text-primary">{s.group}</h3>
+                  </div>
+                  <div className="mt-4 flex flex-wrap gap-2">
+                    {s.items.map((item, idx) => (
+                      <span
+                        key={item}
+                        className={`rounded-full px-3.5 py-1.5 font-sans text-xs font-bold italic leading-none ${SKILL_COLORS[(i * 2 + idx) % SKILL_COLORS.length]}`}
+                      >
+                        {item}
+                      </span>
+                    ))}
+                  </div>
+                </Reveal>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      <section id="projetos" className="border-b border-rule px-5 py-20 md:px-10 md:py-28">
+        <div className="mx-auto max-w-[1400px]">
+          <Reveal>
+            <p className="font-mono text-sm font-semibold tracking-[0.08em] text-foreground uppercase md:text-base">
+              Projetos em destaque
+            </p>
+          </Reveal>
+
+          <Reveal delay={80}>
+            <Link
+              to="/cases/$slug"
+              params={{ slug: featured.slug }}
+              className="group mt-10 grid gap-6 md:grid-cols-[1.15fr_1fr] md:gap-8"
+            >
+              <div className="overflow-hidden rounded-3xl">
+                <ImagePlaceholder
+                  caption={featured.gallery[0]?.caption ?? "[INSERIR IMAGEM]"}
+                  ratio="wide"
+                />
+              </div>
+              <div className="flex flex-col gap-6">
+                <div className="rounded-3xl border border-rule bg-card p-8">
+                  <p className="label text-primary">{featured.category}</p>
+                  <h3 className="mt-4 font-serif text-4xl leading-[1.05] transition-colors group-hover:text-primary md:text-5xl">
+                    {featured.title}
+                  </h3>
+                  <p className="mt-4 leading-relaxed text-muted-foreground">{featured.summary}</p>
+                  <span className="mt-6 inline-flex w-fit items-center rounded-full bg-[#2B301C] px-6 py-3 font-sans text-sm font-bold text-[#F7F6EC] italic transition-transform group-hover:scale-105">
+                    Ver projeto →
+                  </span>
+                </div>
+                <div className="rounded-3xl bg-secondary p-8">
+                  <p className="label">Destaques do projeto</p>
+                  <ul className="mt-4 flex flex-wrap gap-2">
+                    {[
+                      "Estratégia",
+                      "Arquitetura de informação",
+                      "Copywriting",
+                      "UX",
+                      "SEO",
+                      "Desenvolvimento",
+                      "IA aplicada",
+                    ].map((t) => (
+                      <li
+                        key={t}
+                        className="rounded-full border border-border bg-background px-3 py-1.5 text-xs"
+                      >
+                        {t}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </Link>
           </Reveal>
         </div>
       </section>
@@ -83,17 +254,19 @@ function Index() {
       <section className="border-b border-rule px-5 py-20 md:px-10 md:py-28">
         <div className="mx-auto max-w-[1400px]">
           <Reveal>
-            <p className="label">Como eu atuo</p>
+            <p className="font-mono text-sm font-semibold tracking-[0.08em] text-foreground uppercase md:text-base">
+              Como eu atuo
+            </p>
             <h2 className="mt-6 max-w-3xl font-serif text-4xl leading-tight md:text-6xl">
               Estratégia, conteúdo, execução e resultado ao longo da jornada.
             </h2>
           </Reveal>
-          <div className="mt-16 grid gap-px border-t border-rule md:grid-cols-3">
+          <div className="mt-16 grid gap-6 md:grid-cols-3">
             {PILLARS.map((p, i) => (
               <Reveal key={p.n} delay={i * 80}>
                 <Link
                   to={p.to}
-                  className="group flex h-full flex-col border-b border-rule py-10 md:border-r md:border-b-0 md:pr-10 md:last:border-r-0"
+                  className="group flex h-full flex-col rounded-3xl border border-rule bg-card p-8 transition-colors hover:border-primary"
                 >
                   <p className="label">{p.n}</p>
                   <h3 className="mt-5 font-serif text-3xl transition-colors group-hover:text-primary">
@@ -110,81 +283,29 @@ function Index() {
         </div>
       </section>
 
-      <section id="projetos" className="border-b border-rule px-5 py-20 md:px-10 md:py-28">
-        <div className="mx-auto max-w-[1400px]">
-          <Reveal>
-            <p className="label">Projetos em destaque</p>
-          </Reveal>
-
-          <Reveal delay={80}>
-            <Link
-              to="/cases/$slug"
-              params={{ slug: featured.slug }}
-              className="group mt-10 block border-t border-b border-rule py-12 md:py-16"
-            >
-              <p className="label text-primary">{featured.category}</p>
-              <h3 className="mt-6 font-serif text-5xl leading-[1] transition-colors group-hover:text-primary md:text-8xl">
-                {featured.title}
-              </h3>
-              <div className="mt-8 grid gap-8 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] md:gap-16">
-                <p className="font-serif text-xl leading-snug md:text-2xl">{featured.summary}</p>
-                <div>
-                  <p className="leading-relaxed text-muted-foreground">
-                    Projeto autoral no qual concebi a estrutura, o conteúdo e a experiência do site,
-                    utilizando IA como ferramenta de apoio à implementação e ao refinamento técnico.
-                  </p>
-                  <ul className="mt-6 flex flex-wrap gap-x-5 gap-y-2">
-                    {[
-                      "Estratégia",
-                      "Arquitetura de informação",
-                      "Copywriting",
-                      "UX",
-                      "SEO",
-                      "Desenvolvimento",
-                      "IA aplicada",
-                    ].map((t) => (
-                      <li key={t} className="label">
-                        {t}
-                      </li>
-                    ))}
-                  </ul>
-                  <span className="mt-8 inline-block border border-foreground px-6 py-3 font-mono text-[11px] tracking-[0.16em] uppercase transition-colors group-hover:bg-foreground group-hover:text-background">
-                    Ver projeto
-                  </span>
-                </div>
-              </div>
-            </Link>
-          </Reveal>
-
-          <div className="mt-16">
-            {others.map((c, i) => (
-              <CaseCard key={c.slug} item={c} index={i} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="px-5 py-20 md:px-10 md:py-28">
-        <div className="mx-auto max-w-[1400px]">
-          <Reveal>
-            <p className="label">Competências</p>
-            <h2 className="mt-6 max-w-2xl font-serif text-4xl leading-tight md:text-5xl">
-              O que eu sei fazer — não apenas as ferramentas que uso.
-            </h2>
-          </Reveal>
-          <div className="mt-14 grid gap-x-10 gap-y-12 border-t border-rule pt-12 sm:grid-cols-2 lg:grid-cols-3">
-            {SKILLS.map((s, i) => (
-              <Reveal key={s.group} delay={i * 60}>
-                <h3 className="label text-primary">{s.group}</h3>
-                <ul className="mt-5 space-y-2">
-                  {s.items.map((item) => (
-                    <li key={item} className="border-b border-border pb-2 text-sm">
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </Reveal>
-            ))}
+      <section
+        className="relative flex h-56 items-center justify-center overflow-hidden border-t border-rule md:h-72"
+        style={{
+          backgroundImage:
+            "repeating-conic-gradient(#2B301C 0% 25%, #FFC3CC 0% 50%)",
+          backgroundSize: "56px 56px",
+        }}
+        aria-hidden="true"
+      >
+        <div className="relative h-32 w-32 md:h-44 md:w-44">
+          <svg viewBox="0 0 200 200" className="h-full w-full animate-[spin_22s_linear_infinite]">
+            <defs>
+              <path id="badge-path" d="M100,100 m-78,0 a78,78 0 1,1 156,0 a78,78 0 1,1 -156,0" />
+            </defs>
+            <circle cx="100" cy="100" r="98" fill="#D2DB76" />
+            <text fontSize="12.5" fontWeight="700" letterSpacing="2.5" fill="#2B301C">
+              <textPath href="#badge-path" startOffset="0%">
+                RAQUEL VILLAS • PORTFÓLIO • MARKETING •{" "}
+              </textPath>
+            </text>
+          </svg>
+          <div className="absolute inset-0 flex items-center justify-center">
+            <span className="font-serif text-3xl text-[#2B301C] md:text-4xl">RV</span>
           </div>
         </div>
       </section>

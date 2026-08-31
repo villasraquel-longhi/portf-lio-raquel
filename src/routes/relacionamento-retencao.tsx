@@ -34,24 +34,6 @@ const AREAS = [
     text: "Estratégia editorial, curadoria e copy para sustentar frequência e relevância junto à base.",
     slug: "newsletter-e-email-marketing",
   },
-  {
-    n: "02",
-    title: "E-mail Marketing",
-    id: "email-marketing",
-    text: "Campanhas de comunicação, lançamentos e conteúdos com mensagem ajustada a cada segmento.",
-  },
-  {
-    n: "03",
-    title: "CRM & Automação",
-    id: "crm-automacao",
-    text: "Organização da base, segmentações e fluxos automatizados para escalar o relacionamento.",
-  },
-  {
-    n: "04",
-    title: "Réguas de relacionamento",
-    id: "reguas-relacionamento",
-    text: "Sequências que acompanham o lead depois da conversão inicial, mantendo o contato útil e contínuo.",
-  },
 ];
 
 function Page() {
@@ -76,11 +58,15 @@ function Page() {
       <section className="px-5 py-16 md:px-10 md:py-24">
         <div className="mx-auto max-w-[1400px]">
           <Reveal>
-            <p className="label mb-10">Cases desta área</p>
+            <p className="mb-10 font-mono text-sm font-semibold tracking-[0.08em] text-foreground uppercase md:text-base">
+              Cases desta área
+            </p>
           </Reveal>
-          {cases.map((c, i) => (
-            <CaseCard key={c.slug} item={c} index={i} />
-          ))}
+          <div className="space-y-6">
+            {cases.map((c, i) => (
+              <CaseCard key={c.slug} item={c} index={i} />
+            ))}
+          </div>
         </div>
       </section>
     </>

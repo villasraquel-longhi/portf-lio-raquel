@@ -36,24 +36,12 @@ const AREAS = [
   },
   {
     n: "03",
-    title: "Conteúdo B2B",
-    id: "conteudo-b2b",
-    text: "Artigos, materiais e peças de comunicação que traduzem temas complexos para o público certo.",
-  },
-  {
-    n: "04",
-    title: "Projetos Digitais / Sites",
-    id: "projetos-digitais",
-    text: "Estrutura, conteúdo e experiência de páginas e sites, da concepção à publicação.",
-  },
-  {
-    n: "05",
     title: "Print design",
     id: "print-design",
     text: "Peças gráficas e materiais impressos que traduzem a identidade em formato físico.",
   },
   {
-    n: "06",
+    n: "04",
     title: "Roteiro e captação",
     id: "roteiro-captacao",
     text: "Roteiros e gravação de conteúdo para vídeos, reels e peças audiovisuais.",
@@ -80,16 +68,18 @@ function Page() {
       >
         <div className="mx-auto max-w-[1400px]">
           <Reveal>
-            <p className="label">01 — Projeto em destaque</p>
+            <p className="font-mono text-sm font-semibold tracking-[0.08em] text-foreground uppercase md:text-base">
+              01 — Projeto em destaque
+            </p>
             <h2 className="mt-6 font-serif text-5xl leading-[1] md:text-8xl">Web design</h2>
             <p className="mt-6 max-w-2xl font-serif text-xl leading-snug md:text-2xl">
               Da estratégia à implementação: um projeto digital desenvolvido com apoio de IA.
             </p>
           </Reveal>
-          <div className="mt-14 grid gap-px sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {site.process?.map((p, i) => (
               <Reveal key={p.n} delay={i * 60}>
-                <div className="h-full border-t border-rule py-8 pr-8">
+                <div className="h-full rounded-2xl border border-rule bg-card p-6">
                   <p className="label">{p.n}</p>
                   <h3 className="mt-4 font-serif text-2xl">{p.title}</h3>
                   <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{p.text}</p>
@@ -102,13 +92,13 @@ function Page() {
               <Link
                 to="/cases/$slug"
                 params={{ slug: site.slug }}
-                className="border border-foreground px-6 py-3 font-mono text-[11px] tracking-[0.16em] uppercase transition-colors hover:bg-foreground hover:text-background"
+                className="rounded-full bg-[#2B301C] px-6 py-3 font-sans text-sm font-bold text-[#F7F6EC] italic transition-transform hover:scale-105"
               >
                 Ver projeto
               </Link>
               <a
                 href={site.externalCta?.href}
-                className="border border-border px-6 py-3 font-mono text-[11px] tracking-[0.16em] uppercase transition-colors hover:border-primary hover:text-primary"
+                className="rounded-full border-2 border-[#2B301C] px-6 py-3 font-sans text-sm font-bold text-[#2B301C] italic transition-colors hover:bg-[#2B301C] hover:text-[#F7F6EC]"
               >
                 Visitar site
               </a>
@@ -126,11 +116,15 @@ function Page() {
       <section className="px-5 py-16 md:px-10 md:py-24">
         <div className="mx-auto max-w-[1400px]">
           <Reveal>
-            <p className="label mb-10">Cases desta área</p>
+            <p className="mb-10 font-mono text-sm font-semibold tracking-[0.08em] text-foreground uppercase md:text-base">
+              Cases desta área
+            </p>
           </Reveal>
-          {others.map((c, i) => (
-            <CaseCard key={c.slug} item={c} index={i} />
-          ))}
+          <div className="space-y-6">
+            {others.map((c, i) => (
+              <CaseCard key={c.slug} item={c} index={i} />
+            ))}
+          </div>
         </div>
       </section>
     </>
