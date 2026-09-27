@@ -37,13 +37,15 @@ const AREAS = [
     n: "02",
     title: "Inbound Marketing",
     id: "inbound-marketing",
-    text: "E-books, guias e conteúdos de apoio que sustentam a oferta e qualificam o lead antes do contato comercial.",
+    text: "E-books, blog posts e conteúdos de apoio que educam o público e qualificam o lead antes do contato comercial.",
+    slug: "conteudos-ricos-e-inbound",
   },
   {
     n: "03",
     title: "Landing Pages & Conversão",
     id: "landing-pages",
-    text: "Estrutura, copy e otimização de páginas de captura pensadas para o estágio de consciência do público.",
+    text: "Estrutura e copy de páginas de captura e de lançamento, pensadas para o estágio de consciência do público.",
+    slug: "lancamento-de-programas-acate",
   },
   {
     n: "04",

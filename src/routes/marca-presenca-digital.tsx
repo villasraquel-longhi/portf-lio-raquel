@@ -44,7 +44,8 @@ const AREAS = [
     n: "04",
     title: "Roteiro e captação",
     id: "roteiro-captacao",
-    text: "Roteiros e gravação de conteúdo para vídeos, reels e peças audiovisuais.",
+    text: "Roteiros para vídeos institucionais, entrevistas e peças audiovisuais de campanha.",
+    slug: "acate-38-anos",
   },
 ];
 
