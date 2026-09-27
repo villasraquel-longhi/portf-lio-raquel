@@ -253,10 +253,21 @@ function Index() {
               className="group mt-10 grid gap-6 md:grid-cols-[1.15fr_1fr] md:gap-8"
             >
               <div className="overflow-hidden rounded-3xl">
-                <ImagePlaceholder
-                  caption={featured.gallery[0]?.caption ?? "[INSERIR IMAGEM]"}
-                  ratio="wide"
-                />
+                {featured.videoMockup ? (
+                  <div className="flex aspect-[16/10] items-center justify-center rounded-3xl bg-muted p-6 md:p-10">
+                    <img
+                      src={featured.videoMockup}
+                      alt={`Tela do projeto ${featured.title} em um notebook`}
+                      className="w-full object-contain drop-shadow-[0_24px_32px_rgba(43,48,28,0.25)] transition-transform duration-500 group-hover:-translate-y-1"
+                    />
+                  </div>
+                ) : (
+                  <ImagePlaceholder
+                    caption={featured.gallery[0]?.caption ?? "[INSERIR IMAGEM]"}
+                    ratio="wide"
+                    src={featured.cover ?? featured.gallery[0]?.src}
+                  />
+                )}
               </div>
               <div className="flex flex-col gap-6">
                 <div className="rounded-3xl border border-rule bg-card p-8">
