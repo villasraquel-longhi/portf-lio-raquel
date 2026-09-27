@@ -103,41 +103,87 @@ export const CASES: CaseStudy[] = [
     tools: ["[INSERIR FERRAMENTAS UTILIZADAS]"],
   },
   {
-    slug: "campanha-geracao-de-demanda",
+    slug: "conteudos-ricos-e-inbound",
     category: "Geração de Demanda",
     categoryHref: "/geracao-de-demanda",
-    title: "Campanha de Geração de Demanda",
+    title: "Conteúdos Ricos & Inbound",
     summary:
-      "Conteúdo, landing page, captura e nutrição pensados como uma jornada única, e não como peças isoladas.",
+      "E-books, landing pages e blog posts que educam o público, geram leads qualificados e fortalecem marcas como ACATE e Leroy Merlin.",
     sections: [
       {
         heading: "Contexto",
-        body: "[INSERIR CONTEXTO DA CAMPANHA — cenário, público e desafio de negócio]",
+        body: "Marcas com públicos bem diferentes, do ecossistema de tecnologia de Santa Catarina ao varejo de casa e construção, precisavam de conteúdo que fizesse mais do que informar: que atraísse, educasse e abrisse caminho para a conversão.",
       },
-      { heading: "Objetivo", body: "[INSERIR OBJETIVO — o que precisava ser resolvido]" },
+      {
+        heading: "Objetivo",
+        body: "Gerar leads qualificados e engajamento com conteúdo educativo, posicionando cada marca como referência no seu tema.",
+      },
       {
         heading: "Minha atuação",
-        body: "Atuação na concepção e execução das peças que compõem a jornada.",
+        body: "Criação dos conteúdos e das estratégias de inbound que os sustentam.",
         bullets: [
-          "Planejamento da campanha",
-          "Produção de material rico e conteúdo de apoio",
-          "Landing page e copy de conversão",
-          "Régua de e-mails de nutrição",
+          "Planejamento de conteúdo para inbound",
+          "Redação de e-books e materiais ricos",
+          "Copy de landing pages de captura",
+          "Produção de blog posts",
         ],
       },
       {
         heading: "Estratégia",
-        body: "A campanha seguiu a lógica conteúdo → landing page → captura → nutrição → conversão, com mensagens ajustadas ao estágio de consciência de cada etapa.",
+        body: "Cada material rico funcionou como porta de entrada: o blog atrai, o e-book aprofunda o tema e a landing page converte o interesse em lead, com a mensagem ajustada ao estágio de consciência do público.",
       },
-      { heading: "Execução", body: "[INSERIR ENTREGAS DA CAMPANHA]" },
+      {
+        heading: "Execução",
+        body: "Produção de e-books, landing pages e blog posts para a ACATE (Associação Catarinense de Tecnologia) e para a Leroy Merlin.",
+      },
     ],
-    results: ["[INSERIR RESULTADO DA CAMPANHA]"],
+    results: ["[INSERIR RESULTADO — leads gerados, downloads ou conversão]"],
     gallery: [
-      { caption: "[INSERIR IMAGEM — Landing page]", ratio: "wide" },
-      { caption: "[INSERIR IMAGEM — Material rico]", ratio: "square" },
-      { caption: "[INSERIR IMAGEM — E-mails da régua]", ratio: "square" },
+      { caption: "[INSERIR IMAGEM — Capa de e-book]", ratio: "square" },
+      { caption: "[INSERIR IMAGEM — Landing page de captura]", ratio: "square" },
+      { caption: "[INSERIR IMAGEM — Blog post]", ratio: "wide" },
     ],
     tools: ["[INSERIR FERRAMENTAS UTILIZADAS]"],
+  },
+  {
+    slug: "lancamento-de-programas-acate",
+    category: "Geração de Demanda",
+    categoryHref: "/geracao-de-demanda",
+    title: "Lançamento de Programas ACATE",
+    summary:
+      "Textos e landing pages que apresentam novos programas da ACATE com clareza e mostram, logo de cara, o valor para cada público.",
+    sections: [
+      {
+        heading: "Contexto",
+        body: "A ACATE lançou novos programas voltados a públicos estratégicos: investidores, startups e grandes empresas. Cada um precisava de uma comunicação própria, capaz de explicar a proposta e convencer rápido.",
+      },
+      {
+        heading: "Objetivo",
+        body: "Comunicar os principais benefícios de cada programa de forma clara e atrativa, gerando interesse e adesão.",
+      },
+      {
+        heading: "Minha atuação",
+        body: "Redação da comunicação de lançamento dos programas.",
+        bullets: [
+          "Copy de landing pages",
+          "Textos de apresentação dos programas",
+          "Hierarquia de benefícios por público",
+        ],
+      },
+      {
+        heading: "Estratégia",
+        body: "Em vez de descrever o programa, os textos partem do que cada público ganha: o investidor encontra startups com potencial, a startup encontra capital e a grande empresa encontra conexão com o ecossistema de inovação.",
+      },
+      {
+        heading: "Execução",
+        body: "ACATE Invest, que conecta investidores e startups de forma estratégica, e Mantenedores ACATE, que oferece a grandes empresas a oportunidade de se associar a um dos principais hubs de inovação do Brasil.",
+      },
+    ],
+    results: ["[INSERIR RESULTADO — inscrições, adesões ou conversão das páginas]"],
+    gallery: [
+      { caption: "[INSERIR IMAGEM — Landing page ACATE Invest]", ratio: "wide" },
+      { caption: "[INSERIR IMAGEM — Landing page Mantenedores ACATE]", ratio: "wide" },
+    ],
   },
   {
     slug: "eventos-e-campanhas-integradas",
@@ -185,34 +231,39 @@ export const CASES: CaseStudy[] = [
     categoryHref: "/relacionamento-retencao",
     title: "Newsletter & E-mail Marketing",
     summary:
-      "Estratégia editorial, curadoria e copy para manter a base engajada com frequência e consistência.",
+      "Newsletters enviadas por e-mail e publicadas no LinkedIn para uma base de mais de 30 mil assinantes.",
     sections: [
-      { heading: "Contexto", body: "[INSERIR CONTEXTO DA NEWSLETTER — público e objetivo da base]" },
+      {
+        heading: "Contexto",
+        body: "A ACATE precisava manter uma base grande e diversa, formada por empresas associadas, startups e profissionais de tecnologia, informada e engajada com o que acontece no ecossistema.",
+      },
       {
         heading: "Objetivo",
-        body: "Manter relacionamento com a base, sustentar presença de marca e gerar cliques qualificados para conteúdos e ofertas.",
+        body: "Manter relacionamento com a base, ampliar o alcance e o engajamento das campanhas e gerar cliques qualificados para conteúdos, eventos e programas.",
       },
       {
         heading: "Minha atuação",
-        body: "Condução do ciclo editorial completo.",
+        body: "Desenvolvimento das newsletters em conjunto com o time de Comunicação.",
         bullets: [
-          "Estratégia editorial e definição de pautas",
+          "Definição de pautas",
           "Curadoria de conteúdo",
-          "Copy e assunto dos e-mails",
-          "Direção de design e montagem",
-          "Definição de frequência e acompanhamento de métricas",
+          "Copy e linhas de assunto",
+          "Adaptação para e-mail e LinkedIn",
         ],
       },
       {
         heading: "Estratégia",
-        body: "Segmentação → conteúdo → nutrição → relacionamento: a base foi tratada por interesse e estágio, não como lista única.",
+        body: "Dois canais, um mesmo conteúdo: o e-mail mantém o relacionamento com quem já está na base e a newsletter no LinkedIn amplia o alcance para novos públicos.",
       },
-      { heading: "Execução", body: "[INSERIR EDIÇÕES / VOLUME / PERIODICIDADE]" },
+      {
+        heading: "Execução",
+        body: "Edições recorrentes distribuídas por e-mail e publicadas como newsletter no LinkedIn. [INSERIR PERIODICIDADE / NÚMERO DE EDIÇÕES]",
+      },
     ],
-    results: ["[INSERIR TAXA DE ABERTURA]", "[INSERIR CTR]"],
+    results: ["+30 mil assinantes impactados", "[INSERIR TAXA DE ABERTURA]", "[INSERIR CTR]"],
     gallery: [
       { caption: "[INSERIR IMAGEM — Edição da newsletter]", ratio: "tall" },
-      { caption: "[INSERIR IMAGEM — Comparativo desktop/mobile]", ratio: "wide" },
+      { caption: "[INSERIR IMAGEM — Newsletter no LinkedIn]", ratio: "wide" },
     ],
     tools: ["[INSERIR FERRAMENTA DE E-MAIL / CRM]"],
   },
@@ -222,36 +273,123 @@ export const CASES: CaseStudy[] = [
     categoryHref: "/marca-presenca-digital",
     title: "Social Media & Conteúdo",
     summary:
-      "Planejamento editorial, copywriting e direção visual para sustentar presença digital consistente.",
+      "Planejamento editorial e copy estratégico para as redes da ACATE e da Rede de Inovação Florianópolis.",
     sections: [
-      { heading: "Contexto", body: "[INSERIR CONTEXTO — canais, públicos e maturidade da marca]" },
+      {
+        heading: "Contexto",
+        body: "Duas marcas do ecossistema de inovação de Santa Catarina, a ACATE e a Rede de Inovação Florianópolis, falam com públicos diversos: empreendedores, empresas, investidores, poder público e comunidade.",
+      },
       {
         heading: "Objetivo",
-        body: "Fortalecer posicionamento e manter presença constante nos canais digitais com conteúdo relevante para o público B2B.",
+        body: "Fortalecer a presença digital das duas marcas e engajar diferentes públicos com conteúdo relevante e consistente.",
       },
       {
         heading: "Minha atuação",
-        body: "Condução do conteúdo do planejamento à análise.",
+        body: "Participação no planejamento e responsabilidade pelo copy.",
         bullets: [
-          "Planejamento editorial",
-          "Copywriting",
-          "Criação de conteúdo",
-          "Direção visual",
-          "Gestão de redes",
-          "Análise de métricas",
+          "Planejamento do calendário editorial da Rede de Inovação Florianópolis",
+          "Copywriting para as redes da ACATE",
+          "Copywriting para as redes da Rede de Inovação Florianópolis",
+          "Adaptação de tom por público e canal",
         ],
       },
       {
         heading: "Estratégia",
-        body: "Linhas editoriais fixas garantiram recorrência e reconhecimento, com espaço para conteúdos de oportunidade ligados a campanhas e eventos.",
+        body: "Um calendário editorial com linhas fixas garante recorrência e reconhecimento, e deixa espaço para conteúdos de oportunidade ligados a campanhas, eventos e programas.",
       },
       { heading: "Execução", body: "[INSERIR VOLUME DE PUBLICAÇÕES E FORMATOS]" },
     ],
     results: ["[INSERIR ALCANCE / ENGAJAMENTO / CRESCIMENTO]"],
     gallery: [
-      { caption: "[INSERIR IMAGEM — Grade de posts]", ratio: "square" },
-      { caption: "[INSERIR IMAGEM — Peça em destaque]", ratio: "square" },
+      { caption: "[INSERIR IMAGEM — Posts ACATE]", ratio: "square" },
+      { caption: "[INSERIR IMAGEM — Posts Rede de Inovação Florianópolis]", ratio: "square" },
       { caption: "[INSERIR IMAGEM — Carrossel]", ratio: "wide" },
+    ],
+  },
+  {
+    slug: "acate-38-anos",
+    category: "Marca & Presença Digital",
+    categoryHref: "/marca-presenca-digital",
+    title: "ACATE 38 anos: Protagonizando o futuro",
+    summary:
+      "Criação do mote da campanha de aniversário e de todo o copy derivado dele, das redes sociais ao vídeo institucional.",
+    sections: [
+      {
+        heading: "Contexto",
+        body: "Em seu aniversário de 38 anos, a ACATE precisava de uma campanha que celebrasse a sua trajetória e reforçasse o papel da Associação no futuro da tecnologia em Santa Catarina.",
+      },
+      {
+        heading: "Objetivo",
+        body: "Criar um conceito forte o bastante para guiar todas as peças da campanha, para o público externo e para o interno.",
+      },
+      {
+        heading: "Minha atuação",
+        body: "Junto ao time de Marketing, criei o mote “Protagonizando o futuro há 38 anos” e os textos da campanha.",
+        bullets: [
+          "Criação do mote da campanha",
+          "Copy para as peças de redes sociais",
+          "Roteiro do vídeo institucional",
+          "E-mails marketing",
+          "Ações de endomarketing",
+        ],
+      },
+      {
+        heading: "Estratégia",
+        body: "O mote une passado e futuro na mesma frase: os 38 anos comprovam a trajetória e o “protagonizando” coloca a ACATE à frente do que vem pela frente. Cada peça partiu dessa ideia, o que deu unidade à campanha em todos os canais.",
+      },
+      {
+        heading: "Execução",
+        body: "O roteiro do vídeo institucional, desenvolvido com o time de Comunicação, foi lançado na posse da nova diretoria da Associação, no Teatro do CIC, em Florianópolis.",
+      },
+    ],
+    results: ["Cerca de 600 convidados no lançamento do vídeo institucional"],
+    gallery: [
+      { caption: "[INSERIR VÍDEO — Institucional 38 anos da ACATE]", ratio: "wide" },
+      { caption: "[INSERIR IMAGEM — Peças de redes sociais]", ratio: "square" },
+      { caption: "[INSERIR IMAGEM — E-mail marketing]", ratio: "square" },
+    ],
+  },
+  {
+    slug: "acate-37-anos",
+    category: "Marca & Presença Digital",
+    categoryHref: "/marca-presenca-digital",
+    title: "ACATE 37 anos: Criando conexões com o futuro",
+    summary:
+      "Mote da campanha de aniversário e roteiros de entrevistas com empresas e pessoas impactadas pelos programas da Associação.",
+    sections: [
+      {
+        heading: "Contexto",
+        body: "Em 2023, a ACATE completou 37 anos e queria engajar suas empresas associadas mostrando, com histórias reais, o impacto dos seus programas de inovação e formação.",
+      },
+      {
+        heading: "Objetivo",
+        body: "Celebrar a trajetória da Associação e dar protagonismo a quem foi impactado por ela.",
+      },
+      {
+        heading: "Minha atuação",
+        body: "Junto ao time, criei o mote “Desde 1986, criando conexões com o futuro”, que guiou toda a campanha, e escrevi os roteiros das entrevistas.",
+        bullets: [
+          "Criação do mote da campanha",
+          "Seleção dos entrevistados com o time",
+          "Roteiros das entrevistas",
+        ],
+      },
+      {
+        heading: "Estratégia",
+        body: "Em vez de a ACATE falar de si mesma, a campanha deu voz a startups, corporates e pessoas que viveram os programas da Associação. O mote reforça a ideia central: a ACATE conecta pessoas e empresas ao futuro desde 1986.",
+      },
+      {
+        heading: "Execução",
+        body: "Série de entrevistas com cases do ecossistema.",
+        bullets: ["Harmo", "RD Station", "Formação de Talentos", "Fazendas Bioma"],
+      },
+    ],
+    results: ["[INSERIR RESULTADO — visualizações, alcance ou engajamento]"],
+    gallery: [
+      { caption: "[INSERIR VÍDEO — Entrevista Harmo]", ratio: "square" },
+      { caption: "[INSERIR VÍDEO — Entrevista RD Station]", ratio: "square" },
+      { caption: "[INSERIR VÍDEO — Entrevista Formação de Talentos]", ratio: "square" },
+      { caption: "[INSERIR VÍDEO — Entrevista Fazendas Bioma]", ratio: "square" },
     ],
   },
 ];

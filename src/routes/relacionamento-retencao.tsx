@@ -31,7 +31,7 @@ const AREAS = [
     n: "01",
     title: "Newsletter",
     id: "newsletter",
-    text: "Estratégia editorial, curadoria e copy para sustentar frequência e relevância junto à base.",
+    text: "Pautas, curadoria e copy para uma base de mais de 30 mil assinantes, por e-mail e no LinkedIn.",
     slug: "newsletter-e-email-marketing",
   },
 ];

@@ -74,6 +74,7 @@ function Index() {
               <p className="max-w-2xl font-serif text-xl leading-snug md:text-2xl">
                 {PROFILE.intro}
               </p>
+              <p className="mt-4 max-w-2xl leading-relaxed text-muted-foreground">{PROFILE.bio}</p>
             </Reveal>
 
             <Reveal delay={220}>
@@ -330,8 +331,7 @@ function Index() {
       <section
         className="relative flex h-56 items-center justify-center overflow-hidden border-t border-rule md:h-72"
         style={{
-          backgroundImage:
-            "repeating-conic-gradient(#2B301C 0% 25%, #FFC3CC 0% 50%)",
+          backgroundImage: "repeating-conic-gradient(#2B301C 0% 25%, #FFC3CC 0% 50%)",
           backgroundSize: "56px 56px",
         }}
         aria-hidden="true"

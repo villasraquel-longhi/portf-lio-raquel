@@ -3,6 +3,7 @@ export const PROFILE = {
   headline: "Marketing B2B · B2B2C · Inbound · Conteúdo · Geração de Demanda",
   intro:
     "Transformo estratégias de marketing em conteúdo, campanhas e experiências digitais que conectam marcas e pessoas ao longo da jornada de compra.",
+  bio: "Formada em Letras, migrei para o marketing e, desde então, dei voz a uma startup de inovação tributária, a projetos sociais, a e-commerces e a um dos maiores hubs de inovação do Brasil. Em cada projeto, a palavra é o ponto de partida para novas narrativas.",
   linkedin: "https://www.linkedin.com/in/raquel-villas-longhi/",
   email: "villasraquel@gmail.com",
   site: "[INSERIR LINK DO SITE]",
@@ -83,7 +84,11 @@ export const NAV: NavItem[] = [
       { hash: "web-design", label: "Web design", text: "Sites e páginas de ponta a ponta" },
       { hash: "social-media", label: "Social media", text: "Planejamento, copy e direção visual" },
       { hash: "print-design", label: "Print design", text: "Peças gráficas e materiais impressos" },
-      { hash: "roteiro-captacao", label: "Roteiro e captação", text: "Roteiros e gravação de conteúdo" },
+      {
+        hash: "roteiro-captacao",
+        label: "Roteiro e captação",
+        text: "Roteiros para vídeos e entrevistas",
+      },
     ],
   },
 ];
