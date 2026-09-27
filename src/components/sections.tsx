@@ -108,7 +108,10 @@ export function CaseCard({ item, index }: { item: CaseStudy; index: number }) {
         className="group grid gap-6 rounded-3xl border border-rule bg-card p-6 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] md:gap-10 md:p-8"
       >
         <div className="overflow-hidden rounded-2xl transition-transform duration-500 group-hover:-translate-y-1 md:order-2">
-          <ImagePlaceholder caption={item.gallery[0]?.caption ?? "[INSERIR IMAGEM]"} />
+          <ImagePlaceholder
+            caption={item.gallery[0]?.caption ?? "[INSERIR IMAGEM]"}
+            src={item.cover ?? item.gallery[0]?.src}
+          />
         </div>
         <div className="flex flex-col justify-center md:order-1">
           <p className="label text-primary">{item.category}</p>

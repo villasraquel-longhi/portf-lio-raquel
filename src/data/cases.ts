@@ -1,3 +1,5 @@
+import type { ImageRatio } from "@/components/ImagePlaceholder";
+
 export type CaseSection = { heading: string; body: string; bullets?: string[] };
 
 export type CaseStudy = {
@@ -8,12 +10,22 @@ export type CaseStudy = {
   summary: string;
   featured?: boolean;
   externalCta?: { label: string; href: string };
+  /** Video shown next to the title in the case header (path under /public). */
+  video?: string;
+  /** Device mockup layered over the side of the header video. */
+  videoMockup?: string;
   process?: { n: string; title: string; text: string }[];
   flow?: string[];
   sections: CaseSection[];
+  /** When set, the sections are shown as a visual journey with this heading. */
+  journeyTitle?: string;
   results?: string[];
   learnings?: string[];
-  gallery: { caption: string; ratio: "wide" | "tall" | "square" }[];
+  gallery: { caption: string; ratio: ImageRatio; src?: string }[];
+  /** "carousel" shows the gallery as side-by-side thumbnails with arrows. */
+  galleryStyle?: "grid" | "carousel";
+  /** Image used on the case cards; defaults to the first gallery image. */
+  cover?: string;
   tools?: string[];
 };
 
@@ -22,11 +34,14 @@ export const CASES: CaseStudy[] = [
     slug: "site-autoral",
     category: "Marca & Presença Digital",
     categoryHref: "/marca-presenca-digital",
-    title: "Site Autoral",
+    title: "Site Spotlar",
     summary: "Da estratégia à implementação: um projeto digital desenvolvido com apoio de IA.",
     featured: true,
-    externalCta: { label: "Visitar site", href: "[INSERIR LINK DO PROJETO]" },
+    externalCta: { label: "Visitar site", href: "https://spotlar.com.br/" },
+    video: "/videos/site-spotlar.mp4",
+    videoMockup: "/cases/site-spotlar/mockup-sobre-nos.webp",
     flow: ["Ideia", "Estratégia", "Direção", "Implementação com IA", "Site publicado"],
+    journeyTitle: "Do diagnóstico ao go-live",
     process: [
       {
         n: "01",
@@ -62,45 +77,53 @@ export const CASES: CaseStudy[] = [
     sections: [
       {
         heading: "Contexto",
-        body: "Meu portfólio precisava comunicar algo que um currículo tradicional não comunica: a capacidade de atuar em diferentes pontos da jornada de marketing e de conduzir um projeto digital de ponta a ponta.",
+        body: "O site da Spotlar não era atualizado havia mais de 5 anos e já não acompanhava a evolução da marca. A comunicação não transmitia com clareza o posicionamento da Spotlar, nem apresentava de forma objetiva seus produtos e soluções para os diferentes públicos do negócio.",
       },
       {
         heading: "Objetivo",
-        body: "Construir um projeto digital próprio que funcionasse ao mesmo tempo como portfólio e como evidência prática de estratégia, conteúdo e execução.",
+        body: "Criar uma nova experiência digital, capaz de traduzir o posicionamento atual da Spotlar e apresentar seus produtos e soluções de forma mais clara e estratégica. O novo site precisava organizar a comunicação para os diferentes públicos, oferecer uma experiência consistente em desktop e mobile e garantir uma migração segura do site anterior.",
       },
       {
         heading: "Minha atuação",
-        body: "Conduzi o projeto do início ao fim.",
+        body: "Participei do projeto de ponta a ponta, conectando estratégia, conteúdo, design e tecnologia.",
         bullets: [
-          "Estratégia e posicionamento",
-          "Arquitetura de informação",
-          "Copywriting integral",
-          "Direção de UX e hierarquia visual",
-          "SEO e estrutura semântica",
-          "Desenvolvimento com apoio de IA",
+          "Diagnóstico do site existente, considerando SEO, navegação, prova social e conversão",
+          "Definição de escopo e gestão do projeto",
+          "Arquitetura de informação para as jornadas B2C e B2B",
+          "Participação no copywriting do novo site",
+          "Direção de UX e aplicação do brand system",
+          "Design e desenvolvimento com apoio do Claude",
+          "Coordenação do go-live junto ao time de Tech",
         ],
       },
       {
-        heading: "Estratégia",
-        body: "A narrativa foi organizada em torno do fluxo ideia → estratégia → direção → implementação com IA → site publicado, para que cada seção reforçasse a visão de funil e não apenas a lista de entregas.",
-      },
-      {
-        heading: "Execução",
-        body: "Entrega de um site responsivo, com páginas por frente estratégica, template reutilizável de case, SEO básico e publicação.",
+        heading: "Resultado",
+        body: "O novo site foi lançado em 24 dias, com 17 entregas entre desktop, mobile e código. A migração do site anterior foi realizada sem perda de conteúdo, e o projeto cumpriu o OKR de relançamento, criando uma nova base digital para comunicar o posicionamento, produtos e soluções da Spotlar.",
       },
     ],
-    results: ["[INSERIR MÉTRICAS DO PROJETO]"],
     learnings: [
       "Definir a narrativa antes da interface encurta muito o trabalho de design.",
       "IA acelera implementação, mas o critério editorial e estratégico continua sendo humano.",
       "Menos seções e mais hierarquia comunicam senioridade melhor do que volume de conteúdo.",
     ],
+    cover: "/cases/site-spotlar/home-hero.jpg",
+    galleryStyle: "carousel",
     gallery: [
-      { caption: "[INSERIR IMAGEM — Home do site]", ratio: "wide" },
-      { caption: "[INSERIR IMAGEM — Página de case]", ratio: "square" },
-      { caption: "[INSERIR IMAGEM — Versão mobile]", ratio: "tall" },
+      { caption: "Home", ratio: "tall", src: "/cases/site-spotlar/pagina-home.jpg" },
+      { caption: "Para você", ratio: "tall", src: "/cases/site-spotlar/pagina-para-voce.jpg" },
+      {
+        caption: "Interiores turn key",
+        ratio: "tall",
+        src: "/cases/site-spotlar/pagina-interiores-turn-key.jpg",
+      },
+      { caption: "Sobre nós", ratio: "tall", src: "/cases/site-spotlar/pagina-sobre-nos.jpg" },
+      {
+        caption: "Onde estamos",
+        ratio: "tall",
+        src: "/cases/site-spotlar/pagina-onde-estamos.jpg",
+      },
     ],
-    tools: ["[INSERIR FERRAMENTAS UTILIZADAS]"],
+    tools: ["Claude Code", "Figma", "CapCut", "GitHub"],
   },
   {
     slug: "conteudos-ricos-e-inbound",

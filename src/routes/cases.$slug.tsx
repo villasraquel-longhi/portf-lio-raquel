@@ -1,6 +1,8 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { Reveal } from "@/components/Reveal";
 import { ImagePlaceholder } from "@/components/ImagePlaceholder";
+import { JourneyPath } from "@/components/JourneyPath";
+import { GalleryCarousel } from "@/components/GalleryCarousel";
 import { CASES, getCase, type CaseStudy } from "@/data/cases";
 
 export const Route = createFileRoute("/cases/$slug")({
@@ -12,7 +14,10 @@ export const Route = createFileRoute("/cases/$slug")({
   head: ({ loaderData, params }) => {
     if (!loaderData) {
       return {
-        meta: [{ title: "Projeto não encontrado | Raquel Villas" }, { name: "robots", content: "noindex" }],
+        meta: [
+          { title: "Projeto não encontrado | Raquel Villas" },
+          { name: "robots", content: "noindex" },
+        ],
       };
     }
     const { item } = loaderData;
@@ -34,12 +39,15 @@ export const Route = createFileRoute("/cases/$slug")({
 
 function CasePage() {
   const { item } = Route.useLoaderData() as { item: CaseStudy };
+  const hasImages = item.gallery.some((g) => g.src);
   const next = CASES[(CASES.findIndex((c) => c.slug === item.slug) + 1) % CASES.length]!;
 
   return (
     <article>
       <header className="border-b border-rule px-5 pt-16 pb-14 md:px-10 md:pt-28 md:pb-20">
-        <div className="mx-auto max-w-[1400px]">
+        <div
+          className={`mx-auto max-w-[1400px] ${item.video ? "grid items-center gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)] lg:gap-10" : ""}`}
+        >
           <Reveal>
             <Link to={item.categoryHref} className="label text-primary link-underline">
               {item.category}
@@ -50,19 +58,54 @@ function CasePage() {
             <p className="mt-8 max-w-2xl font-serif text-xl leading-snug md:text-2xl">
               {item.summary}
             </p>
-            {item.externalCta && (
-              <a
-                href={item.externalCta.href}
-                className="mt-10 inline-block rounded-full bg-[#2B301C] px-6 py-3 font-sans text-sm font-bold text-[#F7F6EC] italic transition-transform hover:scale-105"
-              >
-                {item.externalCta.label}
-              </a>
-            )}
+            <div className="mt-10 flex flex-wrap gap-3">
+              {item.externalCta && (
+                <a
+                  href={item.externalCta.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="rounded-full bg-[#2B301C] px-6 py-3 font-sans text-sm font-bold text-[#F7F6EC] italic transition-transform hover:scale-105"
+                >
+                  {item.externalCta.label}
+                </a>
+              )}
+              {hasImages && (
+                <a
+                  href="#galeria"
+                  className="rounded-full border-2 border-[#2B301C] px-6 py-3 font-sans text-sm font-bold text-[#2B301C] italic transition-colors hover:bg-[#2B301C] hover:text-[#F7F6EC]"
+                >
+                  Ver galeria
+                </a>
+              )}
+            </div>
           </Reveal>
+          {item.video && (
+            <Reveal delay={120}>
+              <div className={`relative ${item.videoMockup ? "pb-16 sm:pb-24 lg:pb-28" : ""}`}>
+                <video
+                  src={item.video}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  preload="metadata"
+                  aria-label={`Vídeo do projeto ${item.title}`}
+                  className={`aspect-[16/10] w-full rounded-3xl border border-rule bg-muted object-cover ${item.videoMockup ? "ml-auto sm:w-[82%]" : ""}`}
+                />
+                {item.videoMockup && (
+                  <img
+                    src={item.videoMockup}
+                    alt={`Tela do projeto ${item.title} em um notebook`}
+                    className="absolute bottom-0 left-0 w-[70%] drop-shadow-[0_24px_32px_rgba(43,48,28,0.25)] sm:w-[58%]"
+                  />
+                )}
+              </div>
+            </Reveal>
+          )}
         </div>
       </header>
 
-      {item.process && (
+      {item.process && !item.journeyTitle && (
         <section className="border-b border-rule px-5 py-16 md:px-10 md:py-20">
           <div className="mx-auto max-w-[1400px]">
             <Reveal>
@@ -92,28 +135,34 @@ function CasePage() {
 
       <section className="border-b border-rule px-5 py-16 md:px-10 md:py-20">
         <div className="mx-auto max-w-[1400px]">
-          {item.sections.map((s, i) => (
-            <Reveal key={s.heading} delay={i * 50}>
-              <div className="grid gap-4 border-b border-rule py-10 md:grid-cols-[minmax(0,16rem)_minmax(0,1fr)] md:gap-16">
-                <h2 className="label pt-2">{s.heading}</h2>
-                <div>
-                  <p className="max-w-2xl text-lg leading-relaxed">{s.body}</p>
-                  {s.bullets && (
-                    <ul className="mt-6 grid max-w-2xl gap-2 sm:grid-cols-2">
-                      {s.bullets.map((b) => (
-                        <li
-                          key={b}
-                          className="border-b border-border pb-2 text-sm text-muted-foreground"
-                        >
-                          {b}
-                        </li>
-                      ))}
-                    </ul>
-                  )}
+          {item.journeyTitle ? (
+            <div className="border-b border-rule pb-16">
+              <JourneyPath title={item.journeyTitle} steps={item.sections} />
+            </div>
+          ) : (
+            item.sections.map((s, i) => (
+              <Reveal key={s.heading} delay={i * 50}>
+                <div className="grid gap-4 border-b border-rule py-10 md:grid-cols-[minmax(0,16rem)_minmax(0,1fr)] md:gap-16">
+                  <h2 className="label pt-2">{s.heading}</h2>
+                  <div>
+                    <p className="max-w-2xl text-lg leading-relaxed">{s.body}</p>
+                    {s.bullets && (
+                      <ul className="mt-6 grid max-w-2xl gap-2 sm:grid-cols-2">
+                        {s.bullets.map((b) => (
+                          <li
+                            key={b}
+                            className="border-b border-border pb-2 text-sm text-muted-foreground"
+                          >
+                            {b}
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
                 </div>
-              </div>
-            </Reveal>
-          ))}
+              </Reveal>
+            ))
+          )}
 
           {item.results && item.results.length > 0 && (
             <Reveal>
@@ -130,57 +179,75 @@ function CasePage() {
             </Reveal>
           )}
 
-          {item.learnings && (
-            <Reveal>
-              <div className="grid gap-4 border-b border-rule py-10 md:grid-cols-[minmax(0,16rem)_minmax(0,1fr)] md:gap-16">
-                <h2 className="label pt-2">Aprendizados</h2>
-                <ol className="max-w-2xl space-y-4">
-                  {item.learnings.map((l, i) => (
-                    <li key={l} className="flex gap-5">
-                      <span className="label pt-1">0{i + 1}</span>
-                      <span className="leading-relaxed">{l}</span>
-                    </li>
-                  ))}
-                </ol>
-              </div>
-            </Reveal>
-          )}
+          {(item.learnings || item.tools) && (
+            <div className="grid gap-10 py-10 md:grid-cols-2 md:gap-16">
+              {item.learnings && (
+                <Reveal>
+                  <div>
+                    <h2 className="label">Aprendizados</h2>
+                    <ol className="mt-6 max-w-2xl space-y-4">
+                      {item.learnings.map((l, i) => (
+                        <li key={l} className="flex gap-5">
+                          <span className="label pt-1">0{i + 1}</span>
+                          <span className="leading-relaxed">{l}</span>
+                        </li>
+                      ))}
+                    </ol>
+                  </div>
+                </Reveal>
+              )}
 
-          {item.tools && (
-            <Reveal>
-              <div className="grid gap-4 py-10 md:grid-cols-[minmax(0,16rem)_minmax(0,1fr)] md:gap-16">
-                <h2 className="label pt-2">Ferramentas</h2>
-                <p className="text-muted-foreground">{item.tools.join(" · ")}</p>
-              </div>
-            </Reveal>
+              {item.tools && (
+                <Reveal>
+                  <div>
+                    <h2 className="label">Ferramentas</h2>
+                    <p className="mt-6 text-muted-foreground">{item.tools.join(" · ")}</p>
+                  </div>
+                </Reveal>
+              )}
+            </div>
           )}
         </div>
       </section>
 
-      <section className="border-b border-rule px-5 py-16 md:px-10 md:py-20">
+      <section
+        id="galeria"
+        className="scroll-mt-28 border-b border-rule px-5 py-16 md:px-10 md:py-20"
+      >
         <div className="mx-auto max-w-[1400px]">
-          <Reveal>
-            <p className="font-mono text-sm font-semibold tracking-[0.08em] text-foreground uppercase md:text-base">
-              Galeria
-            </p>
-          </Reveal>
-          <div className="mt-10 grid gap-5 md:grid-cols-6">
-            {item.gallery.map((g, i) => (
-              <Reveal
-                key={g.caption + i}
-                delay={i * 70}
-                className={
-                  g.ratio === "wide"
-                    ? "md:col-span-6"
-                    : g.ratio === "tall"
-                      ? "md:col-span-2"
-                      : "md:col-span-3"
-                }
-              >
-                <ImagePlaceholder caption={g.caption} ratio={g.ratio} />
+          {item.galleryStyle === "carousel" ? (
+            <GalleryCarousel
+              title="Galeria"
+              items={item.gallery.flatMap((g) =>
+                g.src ? [{ caption: g.caption, src: g.src }] : [],
+              )}
+            />
+          ) : (
+            <>
+              <Reveal>
+                <p className="font-mono text-sm font-semibold tracking-[0.08em] text-foreground uppercase md:text-base">
+                  Galeria
+                </p>
               </Reveal>
-            ))}
-          </div>
+              <div className="mt-10 grid gap-5 md:grid-cols-6">
+                {item.gallery.map((g, i) => (
+                  <Reveal
+                    key={g.caption + i}
+                    delay={i * 70}
+                    className={
+                      g.ratio === "wide"
+                        ? "md:col-span-6"
+                        : g.ratio === "tall"
+                          ? "md:col-span-2"
+                          : "md:col-span-3"
+                    }
+                  >
+                    <ImagePlaceholder caption={g.caption} ratio={g.ratio} src={g.src} />
+                  </Reveal>
+                ))}
+              </div>
+            </>
+          )}
         </div>
       </section>
 
