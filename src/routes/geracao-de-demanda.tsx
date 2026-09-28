@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { FlowLine, PageHero, ProjectIndex, CaseCard } from "@/components/sections";
+import { Mail, BookOpen, MousePointerClick, CalendarDays } from "lucide-react";
+import { AreaColumns, PageHero, CaseCard } from "@/components/sections";
 import { Reveal } from "@/components/Reveal";
 import { CASES } from "@/data/cases";
 
@@ -31,12 +32,14 @@ const AREAS = [
     n: "01",
     title: "E-mail Marketing",
     id: "email-marketing",
+    icon: Mail,
     text: "Campanhas e comunicação que continuam a conversa iniciada no conteúdo e conduzem o lead ao próximo passo.",
   },
   {
     n: "02",
     title: "Inbound Marketing",
     id: "inbound-marketing",
+    icon: BookOpen,
     text: "E-books, blog posts e conteúdos de apoio que educam o público e qualificam o lead antes do contato comercial.",
     slug: "conteudos-ricos-e-inbound",
   },
@@ -44,6 +47,7 @@ const AREAS = [
     n: "03",
     title: "Landing Pages & Conversão",
     id: "landing-pages",
+    icon: MousePointerClick,
     text: "Estrutura e copy de páginas de captura e de lançamento, pensadas para o estágio de consciência do público.",
     slug: "lancamento-de-programas-acate",
   },
@@ -51,6 +55,7 @@ const AREAS = [
     n: "04",
     title: "Eventos",
     id: "eventos",
+    icon: CalendarDays,
     text: "Eventos conduzidos como campanhas completas, do anúncio ao pós-evento.",
     slug: "eventos-e-campanhas-integradas",
   },
@@ -67,12 +72,7 @@ function Page() {
       />
       <section className="border-b border-rule px-5 py-16 md:px-10 md:py-20">
         <div className="mx-auto max-w-[1400px]">
-          <Reveal>
-            <FlowLine steps={["Conteúdo", "LP", "Captura", "Nutrição", "Conversão"]} />
-          </Reveal>
-          <div className="mt-14">
-            <ProjectIndex items={AREAS} />
-          </div>
+          <AreaColumns items={AREAS} />
         </div>
       </section>
       <section className="px-5 py-16 md:px-10 md:py-24">

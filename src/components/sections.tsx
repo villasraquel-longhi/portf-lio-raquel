@@ -1,4 +1,5 @@
 import { Link } from "@tanstack/react-router";
+import type { LucideIcon } from "lucide-react";
 import { Reveal } from "@/components/Reveal";
 import { ImagePlaceholder } from "@/components/ImagePlaceholder";
 import type { CaseStudy } from "@/data/cases";
@@ -95,6 +96,61 @@ export function ProjectIndex({
           </article>
         </Reveal>
       ))}
+    </div>
+  );
+}
+
+const AREA_ICON_COLORS = [
+  "bg-[#D2DB76] text-[#2B301C]",
+  "bg-[#FFC3CC] text-[#2B301C]",
+  "bg-[#2B301C] text-[#F7F6EC]",
+];
+const AREA_ACCENT_COLORS = ["bg-[#D2DB76]", "bg-[#FFC3CC]", "bg-[#2B301C]"];
+
+export function AreaColumns({
+  items,
+}: {
+  items: { n: string; title: string; text: string; icon: LucideIcon; slug?: string; id?: string }[];
+}) {
+  return (
+    <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+      {items.map((item, i) => {
+        const Icon = item.icon;
+        return (
+          <Reveal key={item.n} delay={i * 60} className="h-full">
+            <article
+              id={item.id}
+              className="group flex h-full scroll-mt-28 flex-col items-center rounded-2xl border border-rule bg-card px-7 pt-10 pb-9 text-center transition-colors hover:border-primary/40"
+            >
+              <span
+                className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-full ${AREA_ICON_COLORS[i % AREA_ICON_COLORS.length]}`}
+              >
+                <Icon className="h-5 w-5" strokeWidth={1.75} />
+              </span>
+              <h3 className="mt-6 flex items-center justify-center font-serif text-xl leading-snug text-balance sm:min-h-[2lh] md:text-[1.4rem]">
+                {item.slug ? (
+                  <Link
+                    to="/cases/$slug"
+                    params={{ slug: item.slug }}
+                    className="link-underline transition-colors group-hover:text-primary"
+                  >
+                    {item.title}
+                  </Link>
+                ) : (
+                  item.title
+                )}
+              </h3>
+              <span
+                aria-hidden="true"
+                className={`mt-5 h-[3px] w-8 shrink-0 rounded-full ${AREA_ACCENT_COLORS[i % AREA_ACCENT_COLORS.length]}`}
+              />
+              <p className="mt-5 max-w-[16rem] text-[0.95rem] leading-relaxed text-balance text-muted-foreground">
+                {item.text}
+              </p>
+            </article>
+          </Reveal>
+        );
+      })}
     </div>
   );
 }
