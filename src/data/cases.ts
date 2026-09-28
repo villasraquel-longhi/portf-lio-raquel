@@ -1,6 +1,30 @@
 import type { ImageRatio } from "@/components/ImagePlaceholder";
 
-export type CaseSection = { heading: string; body: string; bullets?: string[] };
+/** Icon names resolved to components by the page (loader data must stay serializable). */
+export type CardIcon = "calendar" | "book" | "cursor" | "newspaper";
+
+export type CaseSection = {
+  heading: string;
+  body: string;
+  bullets?: string[];
+  /** Shown as a row of icon cards instead of the default heading/body layout. */
+  cards?: { title: string; icon: CardIcon }[];
+};
+
+export type RichMaterial = {
+  company: "Spotlar" | "ACATE";
+  format: string;
+  title: string;
+  text: string;
+  audience?: string;
+  href?: string;
+  /** Cover or mockup of the material (path under /public). */
+  cover?: string;
+  /** Smaller image layered over the corner of the cover. */
+  coverInset?: string;
+  /** Full-page screenshot of the landing page, shown as an animated thumbnail. */
+  lpShot?: string;
+};
 
 export type CaseStudy = {
   slug: string;
@@ -27,6 +51,8 @@ export type CaseStudy = {
   /** Image used on the case cards; defaults to the first gallery image. */
   cover?: string;
   tools?: string[];
+  /** Rich materials shown as a showcase, grouped by company. */
+  materials?: RichMaterial[];
 };
 
 export const CASES: CaseStudy[] = [
@@ -134,39 +160,64 @@ export const CASES: CaseStudy[] = [
       "E-books, landing pages e blog posts que educam o público, geram leads qualificados e fortalecem marcas como ACATE e Leroy Merlin.",
     sections: [
       {
-        heading: "Contexto",
-        body: "Marcas com públicos bem diferentes, do ecossistema de tecnologia de Santa Catarina ao varejo de casa e construção, precisavam de conteúdo que fizesse mais do que informar: que atraísse, educasse e abrisse caminho para a conversão.",
-      },
-      {
-        heading: "Objetivo",
-        body: "Gerar leads qualificados e engajamento com conteúdo educativo, posicionando cada marca como referência no seu tema.",
-      },
-      {
         heading: "Minha atuação",
         body: "Criação dos conteúdos e das estratégias de inbound que os sustentam.",
-        bullets: [
-          "Planejamento de conteúdo para inbound",
-          "Redação de e-books e materiais ricos",
-          "Copy de landing pages de captura",
-          "Produção de blog posts",
+        cards: [
+          { title: "Planejamento de conteúdo para inbound", icon: "calendar" },
+          { title: "Redação de e-books e materiais ricos", icon: "book" },
+          { title: "Copy de landing pages de captura", icon: "cursor" },
+          { title: "Produção de blog posts", icon: "newspaper" },
         ],
       },
+    ],
+    materials: [
       {
-        heading: "Estratégia",
-        body: "Cada material rico funcionou como porta de entrada: o blog atrai, o e-book aprofunda o tema e a landing page converte o interesse em lead, com a mensagem ajustada ao estágio de consciência do público.",
+        company: "Spotlar",
+        format: "E-book",
+        title: "Guia do Investidor: transforme cada metro quadrado em rentabilidade",
+        text: "Manual prático para transformar apartamentos comuns em imóveis desejados, mais rápidos de alugar e mais lucrativos, com a lógica de interiores pensada para rentabilidade.",
+        audience:
+          "Investidores de imóveis na planta que querem alugar ou revender com mais retorno",
+        href: "https://materiais.spotlar.com.br/lp-guia-do-investidor-25h",
+        lpShot: "/cases/materiais-ricos/lp-guia-do-investidor.jpg",
+        cover: "/cases/materiais-ricos/mockup-guia-do-investidor.webp",
+        coverInset: "/cases/materiais-ricos/capa-guia-do-investidor.webp",
       },
       {
-        heading: "Execução",
-        body: "Produção de e-books, landing pages e blog posts para a ACATE (Associação Catarinense de Tecnologia) e para a Leroy Merlin.",
+        company: "Spotlar",
+        format: "Prévia de orçamento",
+        title: "Prévia de Orçamento: Projetos Spotlar 25H",
+        text: "Material de fundo de funil que apresenta os pacotes de interiores do empreendimento, com imagens do projeto, valores e condições de pagamento de forma transparente.",
+        audience: "Compradores do empreendimento 25H que querem alugar, morar ou revender",
+        href: "https://materiais.spotlar.com.br/lp-previa-de-orcamento-25h",
+        lpShot: "/cases/materiais-ricos/lp-previa-de-orcamento.jpg",
+        cover: "/cases/materiais-ricos/capa-previa-de-orcamento.png",
+      },
+      {
+        company: "ACATE",
+        format: "E-book",
+        title: "M&A e Investimentos: Transformando Negócios",
+        text: "Histórias reais, entrevistas com empresários e insights para orientar a startup em todo o caminho, da captação de investimentos até o exit.",
+        audience:
+          "Empreendedores que querem conhecer o mercado de investimentos e os processos de M&A",
+        href: "https://sc.acate.com.br/ebook-mea-e-investimentos",
+        cover: "/cases/materiais-ricos/capa-ebook-mea.jpg",
+      },
+      {
+        company: "ACATE",
+        format: "Guia",
+        title: "O Guia do Pitch para empresas de tecnologia",
+        text: "Dicas de especialistas, referências e exemplos para montar um pitch organizado e persuasivo, capaz de atrair clientes e investidores.",
+        audience: "Empreendedores que querem apresentar melhor a sua empresa ao mercado",
+        href: "https://sc.acate.com.br/guia-do-pitch",
+        cover: "/cases/materiais-ricos/capa-guia-do-pitch.jpg",
       },
     ],
-    results: ["[INSERIR RESULTADO — leads gerados, downloads ou conversão]"],
     gallery: [
       { caption: "[INSERIR IMAGEM — Capa de e-book]", ratio: "square" },
       { caption: "[INSERIR IMAGEM — Landing page de captura]", ratio: "square" },
       { caption: "[INSERIR IMAGEM — Blog post]", ratio: "wide" },
     ],
-    tools: ["[INSERIR FERRAMENTAS UTILIZADAS]"],
   },
   {
     slug: "lancamento-de-programas-acate",

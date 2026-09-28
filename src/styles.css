@@ -166,6 +166,21 @@
   }
 }
 
+/* Slowly scrolls a full-page screenshot inside a fixed frame, pausing at both ends. */
+@keyframes lp-scroll {
+  0%,
+  12% {
+    object-position: 50% 0%;
+  }
+  50%,
+  62% {
+    object-position: 50% 100%;
+  }
+  100% {
+    object-position: 50% 0%;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   * {
     animation-duration: 0.01ms !important;

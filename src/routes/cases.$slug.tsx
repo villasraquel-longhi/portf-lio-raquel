@@ -3,7 +3,21 @@ import { Reveal } from "@/components/Reveal";
 import { ImagePlaceholder } from "@/components/ImagePlaceholder";
 import { JourneyPath } from "@/components/JourneyPath";
 import { GalleryCarousel } from "@/components/GalleryCarousel";
-import { CASES, getCase, type CaseStudy } from "@/data/cases";
+import { MaterialsShowcase } from "@/components/MaterialsShowcase";
+import {
+  BookOpen,
+  CalendarRange,
+  MousePointerClick,
+  Newspaper,
+  type LucideIcon,
+} from "lucide-react";
+import {
+  CASES,
+  getCase,
+  type CardIcon,
+  type CaseSection,
+  type CaseStudy,
+} from "@/data/cases";
 
 export const Route = createFileRoute("/cases/$slug")({
   loader: ({ params }) => {
@@ -37,9 +51,52 @@ export const Route = createFileRoute("/cases/$slug")({
   component: CasePage,
 });
 
+const CARD_ICONS: Record<CardIcon, LucideIcon> = {
+  calendar: CalendarRange,
+  book: BookOpen,
+  cursor: MousePointerClick,
+  newspaper: Newspaper,
+};
+
+const CARD_ICON_COLORS = [
+  "bg-[#D2DB76] text-[#2B301C]",
+  "bg-[#FFC3CC] text-[#2B301C]",
+  "bg-[#2B301C] text-[#F7F6EC]",
+];
+
+function SectionCards({ section }: { section: CaseSection }) {
+  return (
+    <div className="py-4">
+      <Reveal>
+        <h2 className="label">{section.heading}</h2>
+        <p className="mt-4 max-w-2xl font-serif text-2xl leading-snug">{section.body}</p>
+      </Reveal>
+      <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        {section.cards?.map((c, i) => {
+          const Icon = CARD_ICONS[c.icon];
+          return (
+            <Reveal key={c.title} delay={i * 60} className="h-full">
+              <div className="flex h-full flex-col items-center rounded-2xl border border-rule bg-card px-6 py-9 text-center transition-colors hover:border-primary/40">
+                <span
+                  className={`flex h-12 w-12 items-center justify-center rounded-full ${CARD_ICON_COLORS[i % CARD_ICON_COLORS.length]}`}
+                >
+                  <Icon className="h-5 w-5" strokeWidth={1.75} />
+                </span>
+                <h3 className="mt-5 max-w-[14rem] font-serif text-lg leading-snug text-balance">
+                  {c.title}
+                </h3>
+              </div>
+            </Reveal>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
 function CasePage() {
   const { item } = Route.useLoaderData() as { item: CaseStudy };
-  const hasImages = item.gallery.some((g) => g.src);
+  const hasImages = item.gallery.some((g) => g.src) || !!item.materials;
   const next = CASES[(CASES.findIndex((c) => c.slug === item.slug) + 1) % CASES.length]!;
 
   return (
@@ -74,7 +131,7 @@ function CasePage() {
                   href="#galeria"
                   className="rounded-full border-2 border-[#2B301C] px-6 py-3 font-sans text-sm font-bold text-[#2B301C] italic transition-colors hover:bg-[#2B301C] hover:text-[#F7F6EC]"
                 >
-                  Ver galeria
+                  {item.materials ? "Ver materiais" : "Ver galeria"}
                 </a>
               )}
             </div>
@@ -140,28 +197,32 @@ function CasePage() {
               <JourneyPath title={item.journeyTitle} steps={item.sections} />
             </div>
           ) : (
-            item.sections.map((s, i) => (
-              <Reveal key={s.heading} delay={i * 50}>
-                <div className="grid gap-4 border-b border-rule py-10 md:grid-cols-[minmax(0,16rem)_minmax(0,1fr)] md:gap-16">
-                  <h2 className="label pt-2">{s.heading}</h2>
-                  <div>
-                    <p className="max-w-2xl text-lg leading-relaxed">{s.body}</p>
-                    {s.bullets && (
-                      <ul className="mt-6 grid max-w-2xl gap-2 sm:grid-cols-2">
-                        {s.bullets.map((b) => (
-                          <li
-                            key={b}
-                            className="border-b border-border pb-2 text-sm text-muted-foreground"
-                          >
-                            {b}
-                          </li>
-                        ))}
-                      </ul>
-                    )}
+            item.sections.map((s, i) =>
+              s.cards ? (
+                <SectionCards key={s.heading} section={s} />
+              ) : (
+                <Reveal key={s.heading} delay={i * 50}>
+                  <div className="grid gap-4 border-b border-rule py-10 md:grid-cols-[minmax(0,16rem)_minmax(0,1fr)] md:gap-16">
+                    <h2 className="label pt-2">{s.heading}</h2>
+                    <div>
+                      <p className="max-w-2xl text-lg leading-relaxed">{s.body}</p>
+                      {s.bullets && (
+                        <ul className="mt-6 grid max-w-2xl gap-2 sm:grid-cols-2">
+                          {s.bullets.map((b) => (
+                            <li
+                              key={b}
+                              className="border-b border-border pb-2 text-sm text-muted-foreground"
+                            >
+                              {b}
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                    </div>
                   </div>
-                </div>
-              </Reveal>
-            ))
+                </Reveal>
+              ),
+            )
           )}
 
           {item.results && item.results.length > 0 && (
@@ -215,7 +276,9 @@ function CasePage() {
         className="scroll-mt-28 border-b border-rule px-5 py-16 md:px-10 md:py-20"
       >
         <div className="mx-auto max-w-[1400px]">
-          {item.galleryStyle === "carousel" ? (
+          {item.materials ? (
+            <MaterialsShowcase items={item.materials} />
+          ) : item.galleryStyle === "carousel" ? (
             <GalleryCarousel
               title="Galeria"
               items={item.gallery.flatMap((g) =>
